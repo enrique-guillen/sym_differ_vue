@@ -6,18 +6,31 @@
   const expressionText = ref("");
   const variable = ref("");
   const derivativeExpressionText = ref("");
+  const getExpressionDerivativeFailedReason = ref("");
+  const showGetExpressionDerivativeSucceeded = ref(true);
+  const showGetExpressionDerivativeFailed = ref(false);
 
   function getExpressionDerivative() {
-    derivativeExpressionText.value = "OMG"
-
     axios.get(
       "http://127.0.0.1:3000/derivative_expression",
-      { "params": { "expression": expressionText.value, "variable": variable.value } }
+      { params: { expression: expressionText.value, variable: variable.value } }
     )
     .then(function(response) {
-      console.info(response)
       derivativeExpressionText.value = response.data.derivative_expression
+      showGetExpressionDerivativeFailed.value = false
+      showGetExpressionDerivativeSucceeded.value = true
     })
+    .catch(function(error) {
+      getExpressionDerivativeFailedReason.value = error.response.data.message
+      showGetExpressionDerivativeFailed.value = true
+      showGetExpressionDerivativeSucceeded.value = false
+    })
+  }
+
+  function resetResponseToInitialState() {
+    derivativeExpressionText.value = ""
+    showGetExpressionDerivativeFailed.value = false
+    showGetExpressionDerivativeSucceeded.value = true
   }
 </script>
 
@@ -55,22 +68,28 @@
     </ul>
   </div>
   <form>
-    <div class="labeled-textarea">
+    <div class="labeled-expression">
       <label class="textarea-label" for="expression-text">Your expression:</label>
-      <textarea rows=1 v-model="expressionText"></textarea>
+      <textarea rows=1 v-model="expressionText" @focus="resetResponseToInitialState"></textarea>
     </div>
 
     <div class="labeled-input">
       <label class="input-label" for="variable">Your variable:</label>
-      <input v-model="variable"></input>
+      <input v-model="variable" @focus="resetResponseToInitialState"></input>
     </div>
 
     <button class="derive-button" type="button" @click="getExpressionDerivative">Derive</button>
-    <button class="clear-button" type="button">Clear</button>
+    <button class="clear-button" type="button" @click="resetResponseToInitialState">Clear</button>
 
-    <div class="labeled-output">
-      <label class="input-output" for="derivative-expression-text">Response:</label>
-      <input v-model="derivativeExpressionText"></input>
+    <div class="labeled-response" v-if="showGetExpressionDerivativeSucceeded">
+      <label class="textarea-label" for="derivative-expression-text">Response:</label>
+      <textarea rows=1 v-model="derivativeExpressionText" class="derivative-expression-text" readonly></textarea>
+    </div>
+
+    <div class="labeled-failure" v-if="showGetExpressionDerivativeFailed">
+      <label class="textarea-label" for="fail">Failure:</label>
+      <textarea rows=1 v-model="getExpressionDerivativeFailedReason" class="derivative-expression-text" readonly>
+      </textarea>
     </div>
   </form>
 </template>
@@ -105,15 +124,23 @@
   .sym-differ-reference p {
     margin-bottom: 1rem;
   }
-  form, form button {
+  form {
     margin: 1.5rem;
     font-size: 1.1rem;
   }
-  .labeled-textarea, .labeled-input {
+  form .labeled-expression, form .labeled-input, form .labeled-response, form .labeled-failure {
     margin: 1rem;
     width: 100%;
   }
-  button, button:hover {
+  form .labeled-failure {
+    margin: 1rem;
+    width: 100%;
+    color: #ff6666;
+    font-weight: bold;
+  }
+  form button, form button:hover {
+    margin: 1.5rem;
+    font-size: 1.1rem;
     border-radius: 5px;
     padding: 5px;
     font-family:
@@ -140,21 +167,21 @@
     width: 35%;
     display: inline;
   }
-  button:hover {
+  form button:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
   }
-  label.textarea-label {
+  form label.textarea-label {
     display: block;
   }
-  .labeled-input input {
+  form .labeled-input input {
     margin-left: 1rem;
     width: 100%;
   }
-  textarea, textarea:focus {
+  form textarea, form textarea:focus {
     display: block;
     width: 100%;
   }
-  textarea, textarea:focus, input, input:focus {
+  form textarea, form textarea:focus, form input, form input:focus {
     outline: none;
     border-top: none;
     border-left: none;
@@ -162,5 +189,11 @@
     border-radius: 3px;
     border-bottom: 2px solid var(--color-border);
     font-size: 1.1rem;
+  }
+  form .labeled-failure textarea,
+    form .labeled-failure textarea:focus,
+    form .labeled-failure label {
+    color: #ff6666;
+    font-weight: bold;
   }
 </style>
