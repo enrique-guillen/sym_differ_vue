@@ -1,7 +1,9 @@
 <script setup>
   import { ref } from 'vue'
-  import axios from 'axios'
   import NamedToken from './components/SymDifferNamedToken.vue'
+
+  import { requestDerivativeExpression } from './user-requests-derivative-expression.js'
+  import { derive } from './axios-adapter.js'
 
   const expressionText = ref("");
   const variable = ref("");
@@ -11,26 +13,29 @@
   const showGetExpressionDerivativeFailed = ref(false);
 
   function getExpressionDerivative() {
-    axios.get(
-      "http://127.0.0.1:3000/derivative_expression",
-      { params: { expression: expressionText.value, variable: variable.value } }
+    requestDerivativeExpression(
+      derive,
+      expressionText.value, variable.value,
+      setExpressionDerivativeResponse, setExpressionDerivativeError
     )
-    .then(function(response) {
-      derivativeExpressionText.value = response.data.derivative_expression
-      showGetExpressionDerivativeFailed.value = false
-      showGetExpressionDerivativeSucceeded.value = true
-    })
-    .catch(function(error) {
-      getExpressionDerivativeFailedReason.value = error.response.data.message
-      showGetExpressionDerivativeFailed.value = true
-      showGetExpressionDerivativeSucceeded.value = false
-    })
   }
 
   function resetResponseToInitialState() {
     derivativeExpressionText.value = ""
     showGetExpressionDerivativeFailed.value = false
     showGetExpressionDerivativeSucceeded.value = true
+  }
+
+  function setExpressionDerivativeResponse (response) {
+    derivativeExpressionText.value = response.derivativeExpressionText
+    showGetExpressionDerivativeFailed.value = response.showGetExpressionDerivativeFailed
+    showGetExpressionDerivativeSucceeded.value = response.showGetExpressionDerivativeSucceeded
+  }
+
+  function setExpressionDerivativeError (error) {
+    getExpressionDerivativeFailedReason.value = error.message
+    showGetExpressionDerivativeFailed.value = error.showGetExpressionDerivativeFailed
+    showGetExpressionDerivativeSucceeded.value = error.showGetExpressionDerivativeSucceeded
   }
 </script>
 
