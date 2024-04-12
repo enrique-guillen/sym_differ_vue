@@ -1,10 +1,10 @@
 function requestDerivativeExpression(deriver, expressionText, variable, successCallback, failureCallback) {
   userRequestsDerivativeExpression(
-    {derive: deriver},
+    { derive: deriver },
     expressionText,
     variable,
-    makeSuccessfulResponseCallback({handle: successCallback}),
-    makeFailureResponseCallback({handle: failureCallback}),
+    makeSuccessfulResponseCallback({ handle: successCallback }),
+    makeFailureResponseCallback({ handle: failureCallback }),
   );
 }
 

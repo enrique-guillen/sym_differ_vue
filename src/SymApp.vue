@@ -1,9 +1,9 @@
 <script setup>
-import {ref} from 'vue';
+import { ref } from 'vue';
 import NamedToken from './components/SymDifferNamedToken.vue';
 
-import {requestDerivativeExpression} from './user-requests-derivative-expression.js';
-import {derive} from './axios-adapter.js';
+import { requestDerivativeExpression } from './user-requests-derivative-expression.js';
+import { derive } from './axios-adapter.js';
 
 const expressionText = ref('');
 const variable = ref('');
