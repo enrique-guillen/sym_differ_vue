@@ -36,3 +36,34 @@ import NamedToken from './SymDifferNamedToken.vue';
     </ul>
   </div>
 </template>
+
+<style>
+  .sym-differ-reference {
+    font-family:
+      'Segoe UI',
+      Cambria,
+      Inter,
+      math,
+      -apple-system,
+      BlinkMacSystemFont,
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Fira Sans',
+      'Droid Sans',
+      'Helvetica Neue',
+      sans-serif;
+  }
+  .sym-differ-reference h2 {
+    border-bottom: 2px solid var(--color-border);
+    margin-bottom: 1rem;
+  }
+  .sym-differ-reference ul {
+    list-style-type: none;
+    font-size: 1.1rem;
+  }
+  .sym-differ-reference p {
+    margin-bottom: 1rem;
+  }
+</style>
