@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  token_name: {
+  tokenName: {
     type: String,
     required: true,
   },
@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  &lt;<span class="reference-token-name">{{ token_name }}</span>&gt;
+  &lt;<span class="reference-token-name">{{ tokenName }}</span>&gt;
 </template>
 
 <style>
