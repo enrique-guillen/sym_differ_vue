@@ -1,15 +1,9 @@
-function requestDerivativeExpression(deriver, expressionText, variable, successCallback, failureCallback) {
-  userRequestsDerivativeExpression(
-    { derive: deriver },
-    expressionText,
-    variable,
-    makeSuccessfulResponseCallback({ handle: successCallback }),
-    makeFailureResponseCallback({ handle: failureCallback }),
-  );
-}
-
-function userRequestsDerivativeExpression(deriver, expressionText, variable, successCallback, failureCallback) {
-  deriver.derive(expressionText, variable, successCallback, failureCallback);
+function constructRequestDerivativeExpression(deriver, successCallback, failureCallback) {
+  return {
+    request(expressionText, variable) {
+      deriver.derive(expressionText, variable, successCallback, failureCallback);
+    },
+  };
 }
 
 function makeSuccessfulResponseCallback(handler) {
@@ -37,8 +31,7 @@ function makeFailureResponseCallback(handler) {
 }
 
 export {
-  requestDerivativeExpression,
-  userRequestsDerivativeExpression,
+  constructRequestDerivativeExpression,
   makeSuccessfulResponseCallback,
   makeFailureResponseCallback,
 };

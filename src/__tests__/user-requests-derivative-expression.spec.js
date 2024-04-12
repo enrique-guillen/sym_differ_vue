@@ -1,5 +1,5 @@
 import {
-  userRequestsDerivativeExpression,
+  constructRequestDerivativeExpression,
   makeSuccessfulResponseCallback,
   makeFailureResponseCallback,
 } from '../user-requests-derivative-expression.js';
@@ -8,7 +8,7 @@ import { describe, it } from 'vitest';
 
 const sinon = require('sinon');
 
-describe('userRequestsDerivativeExpression', () => {
+describe('constructRequestDerivativeExpression#request', () => {
   it('emits the expected Derive call', () => {
     const deriver = { derive() {} };
     const deriverMock = sinon.mock(deriver);
@@ -17,7 +17,9 @@ describe('userRequestsDerivativeExpression', () => {
 
     deriverMock.expects('derive').withArgs('x+x+x', 'x', successCallback, failureCallback);
 
-    userRequestsDerivativeExpression(deriver, 'x+x+x', 'x', successCallback, failureCallback);
+    const derivativeExpressionRequester
+      = constructRequestDerivativeExpression(deriver, successCallback, failureCallback);
+    derivativeExpressionRequester.request('x+x+x', 'x');
 
     deriverMock.verify();
   });
