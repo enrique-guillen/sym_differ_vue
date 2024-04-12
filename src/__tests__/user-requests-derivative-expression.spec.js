@@ -4,7 +4,7 @@ import {
   makeFailureResponseCallback,
 } from '../user-requests-derivative-expression.js';
 
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 
 const sinon = require('sinon');
 
