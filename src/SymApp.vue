@@ -2,7 +2,11 @@
 import { ref } from 'vue';
 import NamedToken from './components/SymDifferNamedToken.vue';
 
-import { requestDerivativeExpression } from './user-requests-derivative-expression.js';
+import {
+  constructRequestDerivativeExpression,
+  makeSuccessfulResponseCallback,
+  makeFailureResponseCallback,
+} from './user-requests-derivative-expression.js';
 import { derive } from './axios-adapter.js';
 
 const expressionText = ref('');
@@ -12,14 +16,14 @@ const getExpressionDerivativeFailedReason = ref('');
 const showGetExpressionDerivativeSucceeded = ref(true);
 const showGetExpressionDerivativeFailed = ref(false);
 
+const derivativeExpressionRequester = constructRequestDerivativeExpression(
+  { derive },
+  makeSuccessfulResponseCallback({ handle: setExpressionDerivativeResponse }),
+  makeFailureResponseCallback({ handle: setExpressionDerivativeError }),
+);
+
 function getExpressionDerivative() {
-  requestDerivativeExpression(
-    derive,
-    expressionText.value,
-    variable.value,
-    setExpressionDerivativeResponse,
-    setExpressionDerivativeError,
-  );
+  derivativeExpressionRequester.request(expressionText.value, variable.value);
 }
 
 function resetResponseToInitialState() {
@@ -45,7 +49,7 @@ function setExpressionDerivativeError(error) {
   <div class="sym-differ-reference">
     <h2>Grammar reference</h2>
     <p>
-      The application expects to receive a valid <NamedToken token_name="expression" />. An expression may be as simple
+      The application expects to receive a valid <NamedToken tokenName="expression" />. An expression may be as simple
       as a constant or variable name, as well as complicated as a sum whose arguments are sums.
     </p>
 
