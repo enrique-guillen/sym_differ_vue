@@ -1,60 +1,60 @@
 import {
   userRequestsDerivativeExpression,
   makeSuccessfulResponseCallback,
-  makeFailureResponseCallback
-} from '../user-requests-derivative-expression.js'
+  makeFailureResponseCallback,
+} from '../user-requests-derivative-expression.js';
 
-import { describe, it, expect } from 'vitest'
+import {describe, it, expect} from 'vitest';
 
-var sinon = require("sinon")
+const sinon = require('sinon');
 
 describe('userRequestsDerivativeExpression', () => {
   it('emits the expected Derive call', () => {
-    var deriver = { derive: function () {} }
-    var deriverMock = sinon.mock(deriver)
-    var successCallback = sinon.stub()
-    var failureCallback = sinon.stub()
+    const deriver = {derive() {}};
+    const deriverMock = sinon.mock(deriver);
+    const successCallback = sinon.stub();
+    const failureCallback = sinon.stub();
 
-    deriverMock.expects("derive").withArgs("x+x+x", "x", successCallback, failureCallback)
+    deriverMock.expects('derive').withArgs('x+x+x', 'x', successCallback, failureCallback);
 
-    userRequestsDerivativeExpression(deriver, "x+x+x", "x", successCallback, failureCallback)
+    userRequestsDerivativeExpression(deriver, 'x+x+x', 'x', successCallback, failureCallback);
 
-    deriverMock.verify()
-  })
-})
+    deriverMock.verify();
+  });
+});
 
 describe('makeSuccessfulResponseCallback', () => {
   it('generates a handler function setting the expected attributes', () => {
-    var successHandler = { handle: function () {} }
-    var successHandlerMock = sinon.mock(successHandler)
+    const successHandler = {handle() {}};
+    const successHandlerMock = sinon.mock(successHandler);
 
     successHandlerMock
-      .expects("handle")
+      .expects('handle')
       .withArgs({
-        derivativeExpressionText: "3",
+        derivativeExpressionText: '3',
         showGetExpressionDerivativeFailed: false,
-        showGetExpressionDerivativeSucceeded: true
-      })
+        showGetExpressionDerivativeSucceeded: true,
+      });
 
-    makeSuccessfulResponseCallback(successHandler)({ derivativeExpressionText: "3" })
-    successHandlerMock.verify()
-  })
-})
+    makeSuccessfulResponseCallback(successHandler)({derivativeExpressionText: '3'});
+    successHandlerMock.verify();
+  });
+});
 
 describe('makeFailureResponseCallback', () => {
   it('generates a handler function setting the expected attributes', () => {
-    var failureHandler = { handle: function () {} }
-    var failureHandlerMock = sinon.mock(failureHandler)
+    const failureHandler = {handle() {}};
+    const failureHandlerMock = sinon.mock(failureHandler);
 
     failureHandlerMock
-      .expects("handle")
+      .expects('handle')
       .withArgs({
-        message: "invalid_syntax_error",
+        message: 'invalid_syntax_error',
         showGetExpressionDerivativeFailed: true,
-        showGetExpressionDerivativeSucceeded: false
-      })
+        showGetExpressionDerivativeSucceeded: false,
+      });
 
-    makeFailureResponseCallback(failureHandler)({ message: "invalid_syntax_error" })
-    failureHandlerMock.verify()
-  })
-})
+    makeFailureResponseCallback(failureHandler)({message: 'invalid_syntax_error'});
+    failureHandlerMock.verify();
+  });
+});

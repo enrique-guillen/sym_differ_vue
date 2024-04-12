@@ -1,10 +1,10 @@
 <script setup>
-  defineProps({
-    token_name: {
-      type: String,
-      required: true
-    }
-  })
+defineProps({
+  token_name: {
+    type: String,
+    required: true,
+  },
+});
 </script>
 
 <template>

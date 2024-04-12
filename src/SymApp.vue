@@ -1,42 +1,44 @@
 <script setup>
-  import { ref } from 'vue'
-  import NamedToken from './components/SymDifferNamedToken.vue'
+import {ref} from 'vue';
+import NamedToken from './components/SymDifferNamedToken.vue';
 
-  import { requestDerivativeExpression } from './user-requests-derivative-expression.js'
-  import { derive } from './axios-adapter.js'
+import {requestDerivativeExpression} from './user-requests-derivative-expression.js';
+import {derive} from './axios-adapter.js';
 
-  const expressionText = ref("");
-  const variable = ref("");
-  const derivativeExpressionText = ref("");
-  const getExpressionDerivativeFailedReason = ref("");
-  const showGetExpressionDerivativeSucceeded = ref(true);
-  const showGetExpressionDerivativeFailed = ref(false);
+const expressionText = ref('');
+const variable = ref('');
+const derivativeExpressionText = ref('');
+const getExpressionDerivativeFailedReason = ref('');
+const showGetExpressionDerivativeSucceeded = ref(true);
+const showGetExpressionDerivativeFailed = ref(false);
 
-  function getExpressionDerivative() {
-    requestDerivativeExpression(
-      derive,
-      expressionText.value, variable.value,
-      setExpressionDerivativeResponse, setExpressionDerivativeError
-    )
-  }
+function getExpressionDerivative() {
+  requestDerivativeExpression(
+    derive,
+    expressionText.value,
+    variable.value,
+    setExpressionDerivativeResponse,
+    setExpressionDerivativeError,
+  );
+}
 
-  function resetResponseToInitialState() {
-    derivativeExpressionText.value = ""
-    showGetExpressionDerivativeFailed.value = false
-    showGetExpressionDerivativeSucceeded.value = true
-  }
+function resetResponseToInitialState() {
+  derivativeExpressionText.value = '';
+  showGetExpressionDerivativeFailed.value = false;
+  showGetExpressionDerivativeSucceeded.value = true;
+}
 
-  function setExpressionDerivativeResponse (response) {
-    derivativeExpressionText.value = response.derivativeExpressionText
-    showGetExpressionDerivativeFailed.value = response.showGetExpressionDerivativeFailed
-    showGetExpressionDerivativeSucceeded.value = response.showGetExpressionDerivativeSucceeded
-  }
+function setExpressionDerivativeResponse(response) {
+  derivativeExpressionText.value = response.derivativeExpressionText;
+  showGetExpressionDerivativeFailed.value = response.showGetExpressionDerivativeFailed;
+  showGetExpressionDerivativeSucceeded.value = response.showGetExpressionDerivativeSucceeded;
+}
 
-  function setExpressionDerivativeError (error) {
-    getExpressionDerivativeFailedReason.value = error.message
-    showGetExpressionDerivativeFailed.value = error.showGetExpressionDerivativeFailed
-    showGetExpressionDerivativeSucceeded.value = error.showGetExpressionDerivativeSucceeded
-  }
+function setExpressionDerivativeError(error) {
+  getExpressionDerivativeFailedReason.value = error.message;
+  showGetExpressionDerivativeFailed.value = error.showGetExpressionDerivativeFailed;
+  showGetExpressionDerivativeSucceeded.value = error.showGetExpressionDerivativeSucceeded;
+}
 </script>
 
 <template>

@@ -1,17 +1,17 @@
-import axios from 'axios'
+import axios from 'axios';
 
 function derive(expressionText, variable, successCallback, failureCallback) {
-  var params = { params: { expression: expressionText, variable: variable } }
+  const params = {params: {expression: expressionText, variable}};
   axios.get(
-    "http://127.0.0.1:3000/derivative_expression",
-    { params: { expression: expressionText, variable: variable } }
+    'http://127.0.0.1:3000/derivative_expression',
+    {params: {expression: expressionText, variable}},
   )
-  .then(function (response) {
-    successCallback({ derivativeExpressionText: response.data.derivative_expression })
-  })
-  .catch(function (error) {
-    failureCallback({ message: error.response.data.message })
-  })
+    .then(response => {
+      successCallback({derivativeExpressionText: response.data.derivative_expression});
+    })
+    .catch(error => {
+      failureCallback({message: error.response.data.message});
+    });
 }
 
-export { derive };
+export {derive};
