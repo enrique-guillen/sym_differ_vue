@@ -57,20 +57,20 @@ function setExpressionDerivativeError(error) {
     </p>
     <ul>
       <li>
-        • <NamedToken token_name="expression" /> ::=
-            <NamedToken token_name="constant" /> |
-            <NamedToken token_name="variable" /> |
-            <NamedToken token_name="sum" />
+        • <NamedToken tokenName="expression" /> ::=
+            <NamedToken tokenName="constant" /> |
+            <NamedToken tokenName="variable" /> |
+            <NamedToken tokenName="sum" />
       </li>
       <li>
-        • <NamedToken token_name="constant" /> ::= [0-9]+
+        • <NamedToken tokenName="constant" /> ::= [0-9]+
       </li>
       <li>
-        • <NamedToken token_name="variable" /> ::= [a-zA-Z]+
+        • <NamedToken tokenName="variable" /> ::= [a-zA-Z]+
       </li>
       <li>
-        • <NamedToken token_name="sum" /> ::=
-            <NamedToken token_name="expression" /> + <NamedToken token_name="expression" />
+        • <NamedToken tokenName="sum" /> ::=
+            <NamedToken tokenName="expression" /> + <NamedToken tokenName="expression" />
       </li>
     </ul>
   </div>
@@ -82,7 +82,7 @@ function setExpressionDerivativeError(error) {
 
     <div class="labeled-input">
       <label class="input-label" for="variable">Your variable:</label>
-      <input v-model="variable" @focus="resetResponseToInitialState"></input>
+      <input v-model="variable" @focus="resetResponseToInitialState" />
     </div>
 
     <button class="derive-button" type="button" @click="getExpressionDerivative">Derive</button>
