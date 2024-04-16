@@ -5,7 +5,7 @@ import { createPinia } from 'pinia';
 import deriver from './plugins/deriver.js';
 
 import App from './SymApp.vue';
-import router from './router';
+import router from './router/sym_app_router.js';
 
 const app = createApp(App);
 
