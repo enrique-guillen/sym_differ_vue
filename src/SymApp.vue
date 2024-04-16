@@ -1,11 +1,13 @@
 <script setup>
-import SymDifferGrammarReference from './components/SymDifferGrammarReference.vue';
-import GetDerivativeExpressionForm from './components/GetDerivativeExpressionForm.vue';
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <SymDifferGrammarReference />
-  <GetDerivativeExpressionForm />
+  <RouterView v-slot="{ Component }">
+    <Transition>
+      <component :is="Component" />
+    </Transition>
+  </RouterView>
 </template>
 
 <style>
