@@ -20,7 +20,8 @@ import NamedToken from './SymDifferNamedToken.vue';
             <NamedToken tokenName="constant" /> |
             <NamedToken tokenName="variable" /> |
             <NamedToken tokenName="sum" /> |
-            <NamedToken tokenName="subtraction" />
+            <NamedToken tokenName="subtraction" /> |
+            <NamedToken tokenName="negation" />
       </li>
       <li>
         • <NamedToken tokenName="sum" /> ::=
@@ -29,6 +30,10 @@ import NamedToken from './SymDifferNamedToken.vue';
       <li>
         • <NamedToken tokenName="subtraction" /> ::=
             <NamedToken tokenName="expression" /> - <NamedToken tokenName="expression" />
+      </li>
+      <li>
+        • <NamedToken tokenName="negation" /> ::=
+            - <NamedToken tokenName="expression" />
       </li>
       <li>
         • <NamedToken tokenName="constant" /> ::= [0-9]+
