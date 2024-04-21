@@ -1,5 +1,7 @@
 <script setup>
+import { ref } from 'vue';
 import NamedToken from './SymDifferNamedToken.vue';
+const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
 </script>
 
 <template>
@@ -55,6 +57,12 @@ import NamedToken from './SymDifferNamedToken.vue';
     <p>
       The space between operator symbols such as + and - are ignored, so feel free to add spaces and new lines as you
       see fit between parts of your expression.
+    </p>
+
+    <p>
+      Refer to
+      <a :href="featureFilesLink" target="_blank">the feature files</a>
+      for more examples and information.
     </p>
 
     <p>
