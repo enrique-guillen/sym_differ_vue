@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
+    "test:unit_one": "vitest run -u",
     "test:e2e": "playwright test",
     "lint": "eslint . --fix"
   },
