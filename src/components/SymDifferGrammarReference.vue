@@ -21,7 +21,8 @@ import NamedToken from './SymDifferNamedToken.vue';
             <NamedToken tokenName="variable" /> |
             <NamedToken tokenName="sum" /> |
             <NamedToken tokenName="subtraction" /> |
-            <NamedToken tokenName="negation" />
+            <NamedToken tokenName="negation" /> |
+            <NamedToken tokenName="positive_expression" />
       </li>
       <li>
         • <NamedToken tokenName="sum" /> ::=
@@ -30,6 +31,10 @@ import NamedToken from './SymDifferNamedToken.vue';
       <li>
         • <NamedToken tokenName="subtraction" /> ::=
             <NamedToken tokenName="expression" /> - <NamedToken tokenName="expression" />
+      </li>
+      <li>
+        • <NamedToken tokenName="positive_expresion" /> ::=
+            + <NamedToken tokenName="expression" />
       </li>
       <li>
         • <NamedToken tokenName="negation" /> ::=
@@ -45,6 +50,11 @@ import NamedToken from './SymDifferNamedToken.vue';
 
     <p>
       [0-9]+ matches a number with 1 or more digits. [a-zA-Z]+ Matches a string with 1 or more characters.
+    </p>
+
+    <p>
+      The space between operator symbols such as + and - are ignored, so feel free to add spaces and new lines as you
+      see fit between parts of your expression.
     </p>
 
     <p>
