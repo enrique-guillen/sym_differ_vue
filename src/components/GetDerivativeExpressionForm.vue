@@ -47,6 +47,8 @@ function setExpressionDerivativeError(error) {
 
 <template>
   <form>
+    <h2>Differentiation</h2>
+
     <div class="labeled-expression">
       <label class="textarea-label" for="expression-text">Your expression:</label>
       <textarea rows=1 v-model="expressionText" @focus="resetResponseToInitialState"></textarea>
@@ -76,6 +78,10 @@ function setExpressionDerivativeError(error) {
 <style>
   form {
     width: 100%;
+  }
+  form h2 {
+    border-bottom: 2px solid var(--color-border);
+    margin-bottom: 1rem;
   }
   form .labeled-expression, form .labeled-input, form .labeled-response, form .labeled-failure {
     margin: 1rem;
