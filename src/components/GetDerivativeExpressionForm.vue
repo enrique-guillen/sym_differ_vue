@@ -4,6 +4,8 @@ import { derivativeExpressionRequesterConstructor, } from '../user-requests-deri
 import { expressionAndDerivativeExpressionImageRequesterConstructor } from '../user-requests-expression-and-derivative-expression-image.js';
 import { initialImage } from '../initial-expression-and-derivative-expression-image.js';
 
+import GetDerivativeExpressionSuccessSubform from './GetDerivativeExpressionSuccessSubform.vue'
+import GetDerivativeExpressionFailureSubform from './GetDerivativeExpressionFailureSubform.vue'
 import DerivativeExpressionVisualizationImage from './DerivativeExpressionVisualizationImage.vue'
 
 const derive = inject('derive');
@@ -79,16 +81,13 @@ function setExpressionDerivativeError(error) {
     <button class="derive-button" type="button" @click="getExpressionDerivative">Derive</button>
     <button class="clear-button" type="button" @click="resetResponseToInitialState">Clear</button>
 
-    <div class="labeled-response" v-if="showGetExpressionDerivativeSucceeded">
-      <label class="textarea-label" for="derivative-expression-text">Response:</label>
-      <textarea rows=1 v-model="derivativeExpressionText" class="derivative-expression-text" readonly></textarea>
-    </div>
+    <GetDerivativeExpressionSuccessSubform
+      v-if="showGetExpressionDerivativeSucceeded"
+      :derivativeExpressionText="derivativeExpressionText" />
 
-    <div class="labeled-failure" v-if="showGetExpressionDerivativeFailed">
-      <label class="textarea-label" for="fail">Failure:</label>
-      <textarea rows=1 v-model="getExpressionDerivativeFailedReason" class="derivative-expression-text" readonly>
-      </textarea>
-    </div>
+    <GetDerivativeExpressionFailureSubform
+      v-if="showGetExpressionDerivativeFailed"
+      :getExpressionDerivativeFailedReason="getExpressionDerivativeFailedReason" />
 
     <DerivativeExpressionVisualizationImage
       :derivativeExpressionVisualizationImage="expressionAndDerivativeExpressionImage" />
@@ -103,7 +102,7 @@ function setExpressionDerivativeError(error) {
     border-bottom: 2px solid var(--color-border);
     margin-bottom: 1rem;
   }
-  form .labeled-expression, form .labeled-input, form .labeled-response, form .labeled-failure {
+  form .labeled-expression, form .labeled-input {
     margin: 1rem;
     width: 100%;
   }
@@ -144,11 +143,5 @@ function setExpressionDerivativeError(error) {
     border-radius: 3px;
     border-bottom: 2px solid var(--color-border);
     font-size: 1.1rem;
-  }
-  form .labeled-failure textarea,
-    form .labeled-failure textarea:focus,
-    form .labeled-failure label {
-    color: #ff6666;
-    font-weight: bold;
   }
 </style>
