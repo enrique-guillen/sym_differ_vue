@@ -74,6 +74,9 @@ function setExpressionDerivativeError(error) {
 </template>
 
 <style>
+  form: {
+    width: 100%;
+  }
   form .labeled-expression, form .labeled-input, form .labeled-response, form .labeled-failure {
     margin: 1rem;
     width: 100%;
