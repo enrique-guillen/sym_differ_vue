@@ -4,25 +4,22 @@ import GetDerivativeExpressionForm from './GetDerivativeExpressionForm.vue';
 </script>
 
 <template>
-  <div class="sym-differ-home">
+  <div class="sym-differ-home-contents">
     <GetDerivativeExpressionForm />
     <SymDifferSeeGrammarReferenceHint />
   </div>
 </template>
 
 <style>
-  .sym-differ-home {
+  .sym-differ-home-contents {
     max-width: 1280px;
-    margin: auto auto;
-    padding: 2rem;
     font-weight: normal;
   }
 
   @media (min-width: 1024px) {
-    .sym-differ-home {
+    .sym-differ-home-contents {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      padding: 0 2rem;
     }
   }
 
