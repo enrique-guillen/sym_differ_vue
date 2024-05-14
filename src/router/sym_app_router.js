@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../components/SymDifferHome.vue'),
+      component: () => import('../components/GetDerivativeExpressionForm.vue'),
     },
     {
       path: '/grammarreference',
