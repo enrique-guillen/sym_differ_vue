@@ -1,13 +1,11 @@
 <script setup>
 import { inject, ref } from 'vue';
-
-import {
-  derivativeExpressionRequesterConstructor,
-} from '../user-requests-derivative-expression.js';
-
+import { derivativeExpressionRequesterConstructor, } from '../user-requests-derivative-expression.js';
+import { expressionAndDerivativeExpressionImageRequesterConstructor } from '../user-requests-expression-and-derivative-expression-image.js';
 import { initialImage } from '../initial-expression-and-derivative-expression-image.js';
 
 const derive = inject('derive');
+const imager = inject('imager');
 
 const expressionText = ref('');
 const variable = ref('');
@@ -23,8 +21,14 @@ const derivativeExpressionRequester = derivativeExpressionRequesterConstructor(
   { handle: setExpressionDerivativeError },
 );
 
+const expressionAndDerivativeExpressionImageRequester = expressionAndDerivativeExpressionImageRequesterConstructor(
+  { generateImage: imager },
+  { handle: setExpressionAndExpressionDerivativeImage },
+);
+
 function getExpressionDerivative() {
   derivativeExpressionRequester.request(expressionText.value, variable.value);
+  expressionAndDerivativeExpressionImageRequester.request(expressionText.value, variable.value);
 }
 
 function resetResponseToInitialState() {
@@ -37,6 +41,10 @@ function setExpressionDerivativeResponse(response) {
   derivativeExpressionText.value = response.derivativeExpressionText;
   showGetExpressionDerivativeFailed.value = response.showGetExpressionDerivativeFailed;
   showGetExpressionDerivativeSucceeded.value = response.showGetExpressionDerivativeSucceeded;
+}
+
+function setExpressionAndExpressionDerivativeImage(response) {
+  expressionAndDerivativeExpressionImage.value = btoa(response.image);
 }
 
 function setExpressionDerivativeError(error) {
@@ -83,6 +91,7 @@ function setExpressionDerivativeError(error) {
     <img
       :src="'data:image/svg+xml;base64, ' + expressionAndDerivativeExpressionImage"
       style="display:inline;width:100%;"
+      class="differentiation-form-img"
     />
   </form>
 </template>

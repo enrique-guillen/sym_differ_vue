@@ -13,8 +13,8 @@ describe('GetDerivativeExpressionForm', () => {
     const wrapper = mount(GetDerivativeExpressionForm, {
       global: {
         provide: {
-          derive() {
-          },
+          derive() { },
+          imager() { },
         },
       },
     });
@@ -33,6 +33,14 @@ describe('GetDerivativeExpressionForm', () => {
     expect(wrapper.find('.derivative-expression-text').element.value).toEqual('3');
     expect(wrapper.find('.labeled-response').exists()).toBe(true);
     expect(wrapper.find('.labeled-failure').exists()).toBe(false);
+  });
+
+  it('sets the expected values after calling setExpressionAndExpressionDerivativeImage', async () => {
+    const wrapper = mount(GetDerivativeExpressionForm, {});
+
+    await wrapper.vm.setExpressionAndExpressionDerivativeImage('<svg>...</svg>');
+
+    expect(wrapper.find('.differentiation-form-img').element.src).toEqual('data:image/svg+xml;base64, dW5kZWZpbmVk');
   });
 
   it('resets the expected values after calling resetResponseToInitialState', async () => {
