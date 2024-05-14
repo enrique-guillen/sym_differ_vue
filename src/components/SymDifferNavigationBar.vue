@@ -1,5 +1,5 @@
 <script setup>
-  import NavigationLink from './NavigationLink.vue';
+import NavigationLink from './NavigationLink.vue';
 </script>
 
 <template>
