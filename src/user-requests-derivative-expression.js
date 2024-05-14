@@ -1,37 +1,44 @@
-function constructRequestDerivativeExpression(deriver, successCallback, failureCallback) {
+function derivativeExpressionRequesterConstructor(deriver, successHandler, failureHandler) {
+  function request(expressionText, variable) {
+    deriver.derive(
+      expressionText,
+      variable,
+      makeSuccessfulResponseCallback(successHandler),
+      makeFailureResponseCallback(failureHandler),
+    );
+  }
+
+  function makeSuccessfulResponseCallback(handler) {
+    return response => {
+      handler.handle(
+        {
+          derivativeExpressionText: response.derivativeExpressionText,
+          showGetExpressionDerivativeFailed: false,
+          showGetExpressionDerivativeSucceeded: true,
+        },
+      );
+    };
+  }
+
+  function makeFailureResponseCallback(handler) {
+    return response => {
+      handler.handle(
+        {
+          message: response.message,
+          showGetExpressionDerivativeFailed: true,
+          showGetExpressionDerivativeSucceeded: false,
+        },
+      );
+    };
+  }
+
   return {
-    request(expressionText, variable) {
-      deriver.derive(expressionText, variable, successCallback, failureCallback);
-    },
-  };
-}
-
-function makeSuccessfulResponseCallback(handler) {
-  return response => {
-    handler.handle(
-      {
-        derivativeExpressionText: response.derivativeExpressionText,
-        showGetExpressionDerivativeFailed: false,
-        showGetExpressionDerivativeSucceeded: true,
-      },
-    );
-  };
-}
-
-function makeFailureResponseCallback(handler) {
-  return response => {
-    handler.handle(
-      {
-        message: response.message,
-        showGetExpressionDerivativeFailed: true,
-        showGetExpressionDerivativeSucceeded: false,
-      },
-    );
+    request,
+    makeSuccessfulResponseCallback,
+    makeFailureResponseCallback,
   };
 }
 
 export {
-  constructRequestDerivativeExpression,
-  makeSuccessfulResponseCallback,
-  makeFailureResponseCallback,
+  derivativeExpressionRequesterConstructor,
 };

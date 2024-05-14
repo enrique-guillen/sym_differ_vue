@@ -1,34 +1,21 @@
 import {
-  constructRequestDerivativeExpression,
-  makeSuccessfulResponseCallback,
-  makeFailureResponseCallback,
+  derivativeExpressionRequesterConstructor,
 } from '../user-requests-derivative-expression.js';
 
 import { describe, it } from 'vitest';
 
 const sinon = require('sinon');
 
-describe('constructRequestDerivativeExpression#request', () => {
+describe('derivativeExpressionRequester#request', () => {
   it('emits the expected Derive call', () => {
     const deriver = { derive() {} };
     const deriverMock = sinon.mock(deriver);
-    const successCallback = sinon.stub();
-    const failureCallback = sinon.stub();
 
-    deriverMock.expects('derive').withArgs('x+x+x', 'x', successCallback, failureCallback);
-
-    const derivativeExpressionRequester
-      = constructRequestDerivativeExpression(deriver, successCallback, failureCallback);
-    derivativeExpressionRequester.request('x+x+x', 'x');
-
-    deriverMock.verify();
-  });
-});
-
-describe('makeSuccessfulResponseCallback', () => {
-  it('generates a handler function setting the expected attributes', () => {
     const successHandler = { handle() {} };
     const successHandlerMock = sinon.mock(successHandler);
+
+    const failureHandler = { handle() {} };
+    const failureHandlerMock = sinon.mock(failureHandler);
 
     successHandlerMock
       .expects('handle')
@@ -38,25 +25,46 @@ describe('makeSuccessfulResponseCallback', () => {
         showGetExpressionDerivativeSucceeded: true,
       });
 
-    makeSuccessfulResponseCallback(successHandler)({ derivativeExpressionText: '3' });
-    successHandlerMock.verify();
-  });
-});
-
-describe('makeFailureResponseCallback', () => {
-  it('generates a handler function setting the expected attributes', () => {
-    const failureHandler = { handle() {} };
-    const failureHandlerMock = sinon.mock(failureHandler);
-
     failureHandlerMock
       .expects('handle')
       .withArgs({
-        message: 'invalid_syntax_error',
+        message: 'There was a problem.',
         showGetExpressionDerivativeFailed: true,
         showGetExpressionDerivativeSucceeded: false,
       });
 
-    makeFailureResponseCallback(failureHandler)({ message: 'invalid_syntax_error' });
-    failureHandlerMock.verify();
+    const correctSuccessCallbackBuiltMatcher
+      = successCallback => {
+        successCallback({ derivativeExpressionText: '3' });
+        successHandlerMock.verify();
+        return true;
+      };
+
+    const correctFailureCallbackBuiltMatcher
+      = failureCallback => {
+        failureCallback({ message: 'There was a problem.' });
+        failureHandlerMock.verify();
+        return true;
+      };
+
+    deriverMock.expects('derive').withArgs(
+      'x+x+x',
+      'x',
+      sinon.match(
+        correctSuccessCallbackBuiltMatcher,
+        'The success handler did not receive the expected values upon invocation of the target\'s callbacks.',
+      ),
+      sinon.match(
+        correctFailureCallbackBuiltMatcher,
+        'The failure handler did not receive the expected values upon invocation of the target\'s callbacks.',
+      ),
+    );
+
+    const derivativeExpressionRequester
+      = derivativeExpressionRequesterConstructor(deriver, successHandler, failureHandler);
+
+    derivativeExpressionRequester.request('x+x+x', 'x');
+
+    deriverMock.verify();
   });
 });
