@@ -31,10 +31,15 @@ import SymDifferNavigationBar from './components/SymDifferNavigationBar.vue';
     opacity: 0;
   }
 
+  .sym-differ-contents {
+    margin: 0;
+    padding: 1rem;
+  }
+
   @media (min-width: 1024px) {
     .sym-differ-home {
       display: grid;
-      grid-template-columns: 1fr 5fr;
+      grid-template-columns: 1fr 4.5fr;
     }
     .sym-differ-contents {
       display: flex;

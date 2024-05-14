@@ -1,10 +1,14 @@
+<script setup>
+  import NavigationLink from './NavigationLink.vue';
+</script>
+
 <template>
   <div class="sym-differ-nav">
     <h1>SymDiffer</h1>
     <ul>
-      <li><RouterLink to="/">Home</RouterLink></li>
+      <NavigationLink target="/" text="Home" />
 
-      <li><RouterLink to="/grammarreference">Grammar reference</RouterLink></li>
+      <NavigationLink target="/grammarreference" text="Grammar reference" />
     </ul>
   </div>
 </template>
@@ -12,9 +16,8 @@
 <style>
   .sym-differ-nav {
     border-bottom: 1px solid var(--color-border);
-    padding-bottom: 1rem;
     margin-bottom: 1rem;
-    padding: 0.5rem;
+    padding: 1.5rem;
   }
 
   .sym-differ-nav h1 {
@@ -26,20 +29,6 @@
 
   .sym-differ-nav ul {
     padding: 0;
-  }
-
-  .sym-differ-nav li {
-    padding: 0.25rem;
-    color: #999999;
-    font-weight: 700;
-    list-style-type: none;
-  }
-
-  .sym-differ-nav a {
-    padding: 0.25rem;
-    color: #999999;
-    font-weight: 700;
-    list-style-type: none;
   }
 
   @media (min-width: 1024px) {

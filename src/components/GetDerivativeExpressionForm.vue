@@ -92,21 +92,7 @@ function setExpressionDerivativeError(error) {
     font-size: 1.1rem;
     border-radius: 5px;
     padding: 5px;
-    font-family:
-      'Segoe UI',
-      Cambria,
-      Inter,
-      math,
-      -apple-system,
-      BlinkMacSystemFont,
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      'Fira Sans',
-      'Droid Sans',
-      'Helvetica Neue',
-      sans-serif;
+    font-family: var(--vt-font-family);
     outline: none;
     border-top: none;
     border-left: none;
