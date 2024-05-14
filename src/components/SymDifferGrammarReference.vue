@@ -21,10 +21,27 @@ const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
         • <NamedToken tokenName="expression" /> ::=
             <NamedToken tokenName="constant" /> |
             <NamedToken tokenName="variable" /> |
+            <NamedToken tokenName="positive" /> |
+            <NamedToken tokenName="negation" /> |
             <NamedToken tokenName="sum" /> |
             <NamedToken tokenName="subtraction" /> |
-            <NamedToken tokenName="negation" /> |
-            <NamedToken tokenName="positive_expression" />
+            <NamedToken tokenName="multiplication" /> |
+            <NamedToken tokenName="sine-application" /> |
+            <NamedToken tokenName="cosine-application" />
+      </li>
+      <li>
+        • <NamedToken tokenName="constant" /> ::= [0-9]+
+      </li>
+      <li>
+        • <NamedToken tokenName="variable" /> ::= [a-zA-Z]+
+      </li>
+      <li>
+        • <NamedToken tokenName="positive" /> ::=
+            + <NamedToken tokenName="expression" />
+      </li>
+      <li>
+        • <NamedToken tokenName="negation" /> ::=
+            - <NamedToken tokenName="expression" />
       </li>
       <li>
         • <NamedToken tokenName="sum" /> ::=
@@ -35,18 +52,14 @@ const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
             <NamedToken tokenName="expression" /> - <NamedToken tokenName="expression" />
       </li>
       <li>
-        • <NamedToken tokenName="positive_expresion" /> ::=
-            + <NamedToken tokenName="expression" />
+        • <NamedToken tokenName="multiplication" /> ::=
+            <NamedToken tokenName="expression" /> * <NamedToken tokenName="expression" />
       </li>
       <li>
-        • <NamedToken tokenName="negation" /> ::=
-            - <NamedToken tokenName="expression" />
+        • <NamedToken tokenName="sine-application" /> ::= sine(<NamedToken tokenName="expression" />)
       </li>
       <li>
-        • <NamedToken tokenName="constant" /> ::= [0-9]+
-      </li>
-      <li>
-        • <NamedToken tokenName="variable" /> ::= [a-zA-Z]+
+        • <NamedToken tokenName="cosine-application" /> ::= cosine(<NamedToken tokenName="expression" />)
       </li>
     </ul>
 
