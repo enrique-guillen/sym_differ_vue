@@ -1,6 +1,6 @@
 const initialImage = `
   <svg version="1.1"
-       width="1000" height="1000"
+       width="900" height="900"
        xmlns="http://www.w3.org/2000/svg">
 
 

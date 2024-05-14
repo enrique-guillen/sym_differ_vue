@@ -4,6 +4,8 @@ import { derivativeExpressionRequesterConstructor, } from '../user-requests-deri
 import { expressionAndDerivativeExpressionImageRequesterConstructor } from '../user-requests-expression-and-derivative-expression-image.js';
 import { initialImage } from '../initial-expression-and-derivative-expression-image.js';
 
+import DerivativeExpressionVisualizationImage from './DerivativeExpressionVisualizationImage.vue'
+
 const derive = inject('derive');
 const imager = inject('imager');
 
@@ -88,11 +90,8 @@ function setExpressionDerivativeError(error) {
       </textarea>
     </div>
 
-    <img
-      :src="'data:image/svg+xml;base64, ' + expressionAndDerivativeExpressionImage"
-      style="display:inline;width:100%;"
-      class="differentiation-form-img"
-    />
+    <DerivativeExpressionVisualizationImage
+      :derivativeExpressionVisualizationImage="expressionAndDerivativeExpressionImage" />
   </form>
 </template>
 
@@ -131,7 +130,7 @@ function setExpressionDerivativeError(error) {
   }
   form .labeled-input input {
     margin-left: 1rem;
-    width: 100%;
+    width: 80%;
   }
   form textarea, form textarea:focus {
     display: block;
