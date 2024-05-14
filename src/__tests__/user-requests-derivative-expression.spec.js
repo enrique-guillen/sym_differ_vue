@@ -50,14 +50,8 @@ describe('derivativeExpressionRequester#request', () => {
     deriverMock.expects('derive').withArgs(
       'x+x+x',
       'x',
-      sinon.match(
-        correctSuccessCallbackBuiltMatcher,
-        'The success handler did not receive the expected values upon invocation of the target\'s callbacks.',
-      ),
-      sinon.match(
-        correctFailureCallbackBuiltMatcher,
-        'The failure handler did not receive the expected values upon invocation of the target\'s callbacks.',
-      ),
+      sinon.match(correctSuccessCallbackBuiltMatcher, 'successHandler: callback of handler not built correctly',),
+      sinon.match(correctFailureCallbackBuiltMatcher, 'failureHandler: callback of handler not built correctly',),
     );
 
     const derivativeExpressionRequester
