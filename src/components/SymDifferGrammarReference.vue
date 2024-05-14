@@ -81,11 +81,18 @@ const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
     <p>
       Click <RouterLink to="/">here</RouterLink> to go back to the main page.
     </p>
+
+    <h3>Examples</h3>
+    <p>The expression "0" is a valid expression representing the constant 0.</p>
+    <p>The expression "x" is a valid expression representing a variable named x.</p>
+    <p>"sine(x)" is the trigonometric sine function applied to the given argument, the variable x.</p>
+    <p>"-cosine(x * x)" is a valid expression, whose value is the negation of the trigonometric cosine function,
+       applied to the square of the input x variable.</p>
   </div>
 </template>
 
 <style>
-  .sym-differ-reference h2 {
+  .sym-differ-reference h2, .sym-differ-reference h3 {
     border-bottom: 2px solid var(--color-border);
     margin-bottom: 1rem;
   }
