@@ -79,7 +79,7 @@ const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
     </p>
 
     <p>
-      Click <RouterLink to="/">here</RouterLink> to go back to the main page.
+      Click <RouterLink to="/differentiation">here</RouterLink> to go back to the main page.
     </p>
 
     <h3>Examples</h3>

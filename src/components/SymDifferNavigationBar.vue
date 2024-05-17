@@ -6,12 +6,12 @@ import NavigationLink from './NavigationLink.vue';
   <div class="sym-differ-nav">
     <h1>SymDiffer</h1>
     <ul>
-      <NavigationLink target="/" text="Home" />
-
-      <NavigationLink target="/grammarreference" text="Grammar reference" />
+      <NavigationLink target="/differentiation" text="Differentiation" />
 
       <NavigationLink target="/first_order_de_approximation_form"
                       text="Differential Equations: 1st-Order Approximation" />
+
+      <NavigationLink target="/grammarreference" text="Grammar reference" />
     </ul>
   </div>
 </template>

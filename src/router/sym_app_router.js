@@ -9,6 +9,11 @@ const router = createRouter({
       component: () => import('../components/GetDerivativeExpressionForm.vue'),
     },
     {
+      path: '/differentiation',
+      name: 'differentiation',
+      component: () => import('../components/GetDerivativeExpressionForm.vue'),
+    },
+    {
       path: '/first_order_de_approximation_form',
       name: 'first_order_de_approximation_form',
       component: () => import('../components/GetFirstOrderDifferentialEquationApproximationForm.vue'),
