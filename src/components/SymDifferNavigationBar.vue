@@ -9,6 +9,9 @@ import NavigationLink from './NavigationLink.vue';
       <NavigationLink target="/" text="Home" />
 
       <NavigationLink target="/grammarreference" text="Grammar reference" />
+
+      <NavigationLink target="/first_order_de_approximation_form"
+                      text="Differential Equations: 1st-Order Approximation" />
     </ul>
   </div>
 </template>
