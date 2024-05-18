@@ -1,5 +1,7 @@
 <script setup>
 import { inject, ref } from 'vue';
+import { stringToBase64 } from 'uint8array-extras';
+
 import { derivativeExpressionRequesterConstructor } from '../user-requests-derivative-expression.js';
 import { expressionAndDerivativeExpressionImageRequesterConstructor } from '../user-requests-expression-and-derivative-expression-image.js';
 import { initialImage } from '../initial-expression-and-derivative-expression-image.js';
@@ -19,7 +21,7 @@ const derivativeExpressionText = ref('');
 const getExpressionDerivativeFailedReason = ref('');
 const showGetExpressionDerivativeSucceeded = ref(true);
 const showGetExpressionDerivativeFailed = ref(false);
-const expressionAndDerivativeExpressionImage = ref(btoa(initialImage.trim()));
+const expressionAndDerivativeExpressionImage = ref(stringToBase64(initialImage.trim()));
 
 const derivativeExpressionRequester = derivativeExpressionRequesterConstructor(
   { derive },
@@ -50,7 +52,7 @@ function setExpressionDerivativeResponse(response) {
 }
 
 function setExpressionAndExpressionDerivativeImage(response) {
-  expressionAndDerivativeExpressionImage.value = btoa(response.image);
+  expressionAndDerivativeExpressionImage.value = stringToBase64(response.image);
 }
 
 function setExpressionDerivativeError(error) {
