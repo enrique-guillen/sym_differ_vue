@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  getExpressionDerivativeFailedReason: {
+  failureReason: {
     type: String,
     required: true,
   },
@@ -10,7 +10,7 @@ defineProps({
 <template>
   <div class="labeled-failure">
     <label class="textarea-label" for="fail">Failure:</label>
-    <textarea rows=1 class="derivative-expression-text" readonly>{{getExpressionDerivativeFailedReason}}</textarea>
+    <textarea rows=1 readonly>{{failureReason}}</textarea>
   </div>
 </template>
 

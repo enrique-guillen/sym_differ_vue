@@ -7,7 +7,7 @@ import { initialImage } from '../initial-expression-and-derivative-expression-im
 import GetDerivativeExpressionExpressionLabeledTextArea from './GetDerivativeExpressionExpressionLabeledTextArea.vue';
 import GetDerivativeExpressionVariableLabeledInput from './GetDerivativeExpressionVariableLabeledInput.vue';
 import GetDerivativeExpressionSuccessSubform from './GetDerivativeExpressionSuccessSubform.vue';
-import GetDerivativeExpressionFailureSubform from './GetDerivativeExpressionFailureSubform.vue';
+import BasicFailureForm from './BasicFailureForm.vue';
 import DerivativeExpressionVisualizationImage from './DerivativeExpressionVisualizationImage.vue';
 
 const derive = inject('derive');
@@ -85,9 +85,9 @@ function setExpressionDerivativeError(error) {
       v-if="showGetExpressionDerivativeSucceeded"
       :derivativeExpressionText="derivativeExpressionText" />
 
-    <GetDerivativeExpressionFailureSubform
+    <BasicFailureForm
       v-if="showGetExpressionDerivativeFailed"
-      :getExpressionDerivativeFailedReason="getExpressionDerivativeFailedReason" />
+      :failureReason="getExpressionDerivativeFailedReason" />
 
     <DerivativeExpressionVisualizationImage
       :derivativeExpressionVisualizationImage="expressionAndDerivativeExpressionImage" />

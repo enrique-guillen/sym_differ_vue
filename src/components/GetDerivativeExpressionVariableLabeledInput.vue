@@ -13,7 +13,10 @@ const variable = defineModel();
   .labeled-input {
     padding: 0.5rem;
     display: grid;
-    grid-template-columns: 7rem 1fr;
+    grid-template-columns: auto 1fr;
+  }
+  .labeled-input label {
+    padding-right: 0.5rem;
   }
   .labeled-input input, .labeled-input input:focus {
     outline: none;
