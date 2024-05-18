@@ -63,7 +63,7 @@ function setExpressionDerivativeError(error) {
 </script>
 
 <template>
-  <form>
+  <form class="derive-expression-form">
     <h2>Differentiation</h2>
 
     <p>
@@ -82,8 +82,10 @@ function setExpressionDerivativeError(error) {
       v-model="variable"
       @focus="resetResponseToInitialState" />
 
-    <button class="derive-button" type="button" @click="getExpressionDerivative">Derive</button>
-    <button class="clear-button" type="button" @click="resetResponseToInitialState">Clear</button>
+    <div class="button-container">
+      <button class="derive-button" type="button" @click="getExpressionDerivative">Derive</button>
+      <button class="clear-button" type="button" @click="resetResponseToInitialState">Clear</button>
+    </div>
 
     <GetDerivativeExpressionSuccessSubform
       v-if="showGetExpressionDerivativeSucceeded"
@@ -99,14 +101,20 @@ function setExpressionDerivativeError(error) {
 </template>
 
 <style>
-  form {
+  .derive-expression-form {
     width: 100%;
   }
-  form h2 {
+
+  .derive-expression-form h2 {
     border-bottom: 2px solid var(--color-border);
     margin-bottom: 1rem;
   }
-  form button, form button:hover {
+
+  .derive-expression-form .button-container {
+    text-align: center;
+  }
+
+  .derive-expression-form button, .derive-expression-form button:hover {
     margin: 1.5rem;
     font-size: 1.1rem;
     border-radius: 5px;
@@ -121,7 +129,8 @@ function setExpressionDerivativeError(error) {
     width: 35%;
     display: inline;
   }
-  form button:hover {
+
+  .derive-expression-form button:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 </style>
