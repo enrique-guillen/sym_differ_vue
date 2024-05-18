@@ -33,7 +33,7 @@
     margin-bottom: 1rem;
   }
 
-  form p, form pre {
-    margin-bottom: 1rem;
+  form pre {
+    text-align: center;
   }
 </style>

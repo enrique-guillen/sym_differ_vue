@@ -18,3 +18,11 @@ a,
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
+  h2 {
+    border-bottom: 2px solid var(--color-border);
+    margin-bottom: 1rem;
+  }
+
+  p, pre {
+    margin-bottom: 1rem;
+  }

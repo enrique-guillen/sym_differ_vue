@@ -101,7 +101,4 @@ const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
     font-size: 1.1rem;
     margin-bottom: 1rem;
   }
-  .sym-differ-reference p {
-    margin-bottom: 1rem;
-  }
 </style>
