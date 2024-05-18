@@ -28,7 +28,7 @@ describe('expressionAndDerivativeExpressionImageRequester#request', () => {
     imagerMock.expects('generateImage').withArgs(
       'x+x+x',
       'x',
-      sinon.match(correctSuccessCallbackBuiltMatcher, 'successHandler: callback of handler not built correctly',),
+      sinon.match(correctSuccessCallbackBuiltMatcher, 'successHandler: callback of handler not built correctly'),
     );
 
     const expressionAndDerivativeExpressionImageRequester

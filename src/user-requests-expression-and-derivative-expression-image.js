@@ -3,8 +3,8 @@ function expressionAndDerivativeExpressionImageRequesterConstructor(imager, succ
     imager.generateImage(
       expressionText,
       variable,
-      makeSuccessfulResponseCallback(successHandler)
-    )
+      makeSuccessfulResponseCallback(successHandler),
+    );
   }
 
   function makeSuccessfulResponseCallback(handler) {
@@ -20,4 +20,4 @@ function expressionAndDerivativeExpressionImageRequesterConstructor(imager, succ
   return { request };
 }
 
-export { expressionAndDerivativeExpressionImageRequesterConstructor }
+export { expressionAndDerivativeExpressionImageRequesterConstructor };

@@ -1,12 +1,13 @@
 <script setup>
 import { inject, ref } from 'vue';
-import { derivativeExpressionRequesterConstructor, } from '../user-requests-derivative-expression.js';
+import { derivativeExpressionRequesterConstructor } from '../user-requests-derivative-expression.js';
 import { expressionAndDerivativeExpressionImageRequesterConstructor } from '../user-requests-expression-and-derivative-expression-image.js';
 import { initialImage } from '../initial-expression-and-derivative-expression-image.js';
 
-import GetDerivativeExpressionSuccessSubform from './GetDerivativeExpressionSuccessSubform.vue'
-import GetDerivativeExpressionFailureSubform from './GetDerivativeExpressionFailureSubform.vue'
-import DerivativeExpressionVisualizationImage from './DerivativeExpressionVisualizationImage.vue'
+import GetDerivativeExpressionExpressionLabeledTextArea from './GetDerivativeExpressionExpressionLabeledTextArea.vue';
+import GetDerivativeExpressionSuccessSubform from './GetDerivativeExpressionSuccessSubform.vue';
+import GetDerivativeExpressionFailureSubform from './GetDerivativeExpressionFailureSubform.vue';
+import DerivativeExpressionVisualizationImage from './DerivativeExpressionVisualizationImage.vue';
 
 const derive = inject('derive');
 const imager = inject('imager');
@@ -68,10 +69,9 @@ function setExpressionDerivativeError(error) {
       variable under the definition of variable given in the aforementioned document.
     </p>
 
-    <div class="labeled-expression">
-      <label class="textarea-label" for="expression-text">Your expression:</label>
-      <textarea rows=1 v-model="expressionText" @focus="resetResponseToInitialState"></textarea>
-    </div>
+    <GetDerivativeExpressionExpressionLabeledTextArea
+      v-model="expressionText"
+      @focus="resetResponseToInitialState" />
 
     <div class="labeled-input">
       <label class="input-label" for="variable">Your variable:</label>
@@ -102,7 +102,7 @@ function setExpressionDerivativeError(error) {
     border-bottom: 2px solid var(--color-border);
     margin-bottom: 1rem;
   }
-  form .labeled-expression, form .labeled-input {
+  form .labeled-input {
     margin: 1rem;
     width: 100%;
   }
