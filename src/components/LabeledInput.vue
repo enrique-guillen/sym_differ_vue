@@ -1,12 +1,17 @@
 <script setup>
+const inputValue = defineModel();
+
 defineEmits(['focus'])
-const variable = defineModel();
+
+defineProps({
+  inputLabelText: { type: String, required: true }
+});
 </script>
 
 <template>
   <div class="labeled-input">
-    <label class="input-label" for="variable">Your variable: </label>
-    <input v-model="variable" @focus="$emit('focus')" />
+    <label class="input-label" for="inputValue">{{ inputLabelText }}</label>
+    <input v-model="inputValue" @focus="$emit('focus')" />
   </div>
 </template>
 
