@@ -4,7 +4,7 @@ import { derivativeExpressionRequesterConstructor } from '../user-requests-deriv
 import { expressionAndDerivativeExpressionImageRequesterConstructor } from '../user-requests-expression-and-derivative-expression-image.js';
 import { initialImage } from '../initial-expression-and-derivative-expression-image.js';
 
-import GetDerivativeExpressionExpressionLabeledTextArea from './GetDerivativeExpressionExpressionLabeledTextArea.vue';
+import LabeledTextArea from './LabeledTextArea.vue';
 import GetDerivativeExpressionVariableLabeledInput from './GetDerivativeExpressionVariableLabeledInput.vue';
 import GetDerivativeExpressionSuccessSubform from './GetDerivativeExpressionSuccessSubform.vue';
 import BasicFailureForm from './BasicFailureForm.vue';
@@ -70,7 +70,8 @@ function setExpressionDerivativeError(error) {
       variable under the definition of variable given in the aforementioned document.
     </p>
 
-    <GetDerivativeExpressionExpressionLabeledTextArea
+    <LabeledTextArea
+      inputLabelText="Your expression:"
       v-model="expressionText"
       @focus="resetResponseToInitialState" />
 

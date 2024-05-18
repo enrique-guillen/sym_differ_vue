@@ -1,4 +1,5 @@
 <script setup>
+defineEmits(['focus'])
 const variable = defineModel();
 </script>
 
