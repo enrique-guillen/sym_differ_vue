@@ -26,4 +26,19 @@ defineProps({
     color: #ff6666;
     font-weight: bold;
   }
+
+  .labeled-failure textarea, .labeled-failure textarea:focus {
+    display: block;
+    width: 100%;
+  }
+
+  .labeled-failure textarea, .labeled-failure textarea:focus {
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 3px;
+    border-bottom: 2px solid var(--color-border);
+    font-size: 1.1rem;
+  }
 </style>

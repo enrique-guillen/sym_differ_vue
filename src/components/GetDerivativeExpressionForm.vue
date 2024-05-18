@@ -5,6 +5,7 @@ import { expressionAndDerivativeExpressionImageRequesterConstructor } from '../u
 import { initialImage } from '../initial-expression-and-derivative-expression-image.js';
 
 import GetDerivativeExpressionExpressionLabeledTextArea from './GetDerivativeExpressionExpressionLabeledTextArea.vue';
+import GetDerivativeExpressionVariableLabeledInput from './GetDerivativeExpressionVariableLabeledInput.vue';
 import GetDerivativeExpressionSuccessSubform from './GetDerivativeExpressionSuccessSubform.vue';
 import GetDerivativeExpressionFailureSubform from './GetDerivativeExpressionFailureSubform.vue';
 import DerivativeExpressionVisualizationImage from './DerivativeExpressionVisualizationImage.vue';
@@ -73,10 +74,9 @@ function setExpressionDerivativeError(error) {
       v-model="expressionText"
       @focus="resetResponseToInitialState" />
 
-    <div class="labeled-input">
-      <label class="input-label" for="variable">Your variable:</label>
-      <input v-model="variable" @focus="resetResponseToInitialState" />
-    </div>
+    <GetDerivativeExpressionVariableLabeledInput
+      v-model="variable"
+      @focus="resetResponseToInitialState" />
 
     <button class="derive-button" type="button" @click="getExpressionDerivative">Derive</button>
     <button class="clear-button" type="button" @click="resetResponseToInitialState">Clear</button>
@@ -102,10 +102,6 @@ function setExpressionDerivativeError(error) {
     border-bottom: 2px solid var(--color-border);
     margin-bottom: 1rem;
   }
-  form .labeled-input {
-    margin: 1rem;
-    width: 100%;
-  }
   form button, form button:hover {
     margin: 1.5rem;
     font-size: 1.1rem;
@@ -123,25 +119,5 @@ function setExpressionDerivativeError(error) {
   }
   form button:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
-  }
-  form label.textarea-label {
-    display: block;
-  }
-  form .labeled-input input {
-    margin-left: 1rem;
-    width: 80%;
-  }
-  form textarea, form textarea:focus {
-    display: block;
-    width: 100%;
-  }
-  form textarea, form textarea:focus, form input, form input:focus {
-    outline: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-radius: 3px;
-    border-bottom: 2px solid var(--color-border);
-    font-size: 1.1rem;
   }
 </style>

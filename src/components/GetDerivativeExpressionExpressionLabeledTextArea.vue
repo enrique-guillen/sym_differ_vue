@@ -21,10 +21,7 @@ const expressionText = defineModel();
     display: block;
     width: 100%;
   }
-  .labeled-expression textarea,
-    .labeled-expression textarea:focus,
-    .labeled-expression input,
-    .labeled-expression input:focus {
+  .labeled-expression textarea, .labeled-expression textarea:focus {
     outline: none;
     border-top: none;
     border-left: none;
