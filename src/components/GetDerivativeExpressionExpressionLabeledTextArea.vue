@@ -11,7 +11,7 @@ const expressionText = defineModel();
 
 <style>
   .labeled-expression {
-    margin: 1rem;
+    padding: 0.5rem;
     width: 100%;
   }
   .labeled-expression label.textarea-label {

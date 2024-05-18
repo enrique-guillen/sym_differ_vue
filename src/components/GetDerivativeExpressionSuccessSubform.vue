@@ -16,7 +16,7 @@ defineProps({
 
 <style>
   .labeled-response {
-    margin: 1rem;
+    padding: 0.5rem;
     width: 100%;
   }
   .labeled-response textarea, .labeled-response textarea:focus {

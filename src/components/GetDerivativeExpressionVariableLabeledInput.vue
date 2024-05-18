@@ -11,8 +11,7 @@ const variable = defineModel();
 
 <style>
   .labeled-input {
-    width: 100%;
-    padding-left: 1rem;
+    padding: 0.5rem;
     display: grid;
     grid-template-columns: 7rem 1fr;
   }
