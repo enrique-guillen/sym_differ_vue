@@ -10,7 +10,7 @@ defineProps({
 <template>
   <div class="labeled-failure">
     <label class="textarea-label" for="fail">Failure:</label>
-    <textarea rows=1 readonly>{{failureReason}}</textarea>
+    <textarea :value="failureReason" rows=1 readonly></textarea>
   </div>
 </template>
 

@@ -1,10 +1,10 @@
 <script setup>
 const inputValue = defineModel();
 
-defineEmits(['focus'])
+defineEmits(['focus']);
 
 defineProps({
-  inputLabelText: { type: String, required: true }
+  inputLabelText: { type: String, required: true },
 });
 </script>
 
