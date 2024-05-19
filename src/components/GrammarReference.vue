@@ -1,7 +1,6 @@
-
 <script setup>
 import { ref } from 'vue';
-import NamedToken from './SymDifferNamedToken.vue';
+import NamedToken from './GrammarReferenceNamedToken.vue';
 const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
 </script>
 
