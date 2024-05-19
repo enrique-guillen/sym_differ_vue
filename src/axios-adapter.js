@@ -23,9 +23,7 @@ function generateImage(expressionText, variable, successCallback) {
     });
 }
 
-function approximateFirstOrderDifferentialEquationSolution(
-  expressionText, variableName, undeterminedFunctionName, initialValueCoordinates, successCallback, failureCallback,
-) {
+function approximateFirstOrderDifferentialEquationSolution(equationParameters, successCallback, failureCallback) {
   const approximateFirstOrderDifferentialEquationSolutionUrl
     = 'http://127.0.0.1:3000/first_order_differential_equation_approximation';
 
@@ -34,10 +32,10 @@ function approximateFirstOrderDifferentialEquationSolution(
       approximateFirstOrderDifferentialEquationSolutionUrl,
       {
         params: {
-          expression_text: expressionText,
-          variable_name: variableName,
-          undetermined_function_name: undeterminedFunctionName,
-          initial_value_coordinates: initialValueCoordinates,
+          expression_text: equationParameters.expressionText,
+          variable_name: equationParameters.variableName,
+          undetermined_function_name: equationParameters.undeterminedFunctionName,
+          initial_value_coordinates: equationParameters.initialValueCoordinates,
         },
       },
     )

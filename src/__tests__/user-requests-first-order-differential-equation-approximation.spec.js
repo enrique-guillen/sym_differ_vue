@@ -8,7 +8,12 @@ const sinon = require('sinon');
 
 describe('firstOrderDifferentialEquationApproximationRequester#request', () => {
   it('emits the expected Approximate call', () => {
-    const approximator = { approximate() {} };
+    const equationParameters
+      = {
+        expressionText: 'x-y', variableName: 'x', undeterminedFunctionName: 'y', initialValueCoordinates: [0.0, 0.1],
+      };
+
+    const approximator = { approximator() {} };
     const approximatorMock = sinon.mock(approximator);
 
     const successHandler = { handle() {} };
@@ -47,11 +52,8 @@ describe('firstOrderDifferentialEquationApproximationRequester#request', () => {
         return true;
       };
 
-    approximatorMock.expects('approximate').withArgs(
-      'x-y',
-      'x',
-      'y',
-      [0.0, 0.1],
+    approximatorMock.expects('approximator').withArgs(
+      equationParameters,
       sinon.match(correctSuccessCallbackBuiltMatcher, 'successHandler: callback of handler not built correctly'),
       sinon.match(correctFailureCallbackBuiltMatcher, 'failureHandler: callback of handler not built correctly'),
     );
@@ -59,7 +61,7 @@ describe('firstOrderDifferentialEquationApproximationRequester#request', () => {
     const firstOrderDifferentialEquationApproximationRequester
       = firstOrderDifferentialEquationApproximationRequesterConstructor(approximator, successHandler, failureHandler);
 
-    firstOrderDifferentialEquationApproximationRequester.request('x-y', 'x', 'y', [0.0, 0.1]);
+    firstOrderDifferentialEquationApproximationRequester.request(equationParameters);
 
     approximatorMock.verify();
   });

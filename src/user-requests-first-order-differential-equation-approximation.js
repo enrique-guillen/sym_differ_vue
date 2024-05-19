@@ -1,7 +1,9 @@
 function firstOrderDifferentialEquationApproximationRequesterConstructor(approximator, successHandler, failureHandler) {
-  function request(expressionText, variableName, undeterminedFunctionName, initialValueCoordinates) {
-    approximator.approximate(
-      expressionText, variableName, undeterminedFunctionName, initialValueCoordinates, makeSuccessfulResponseCallback(successHandler), makeFailureResponseCallback(failureHandler),
+  function request(equationParameters) {
+    approximator.approximator(
+      equationParameters,
+      makeSuccessfulResponseCallback(successHandler),
+      makeFailureResponseCallback(failureHandler),
     );
   }
 

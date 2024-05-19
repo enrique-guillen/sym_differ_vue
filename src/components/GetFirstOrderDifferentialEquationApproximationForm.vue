@@ -1,6 +1,9 @@
 <script setup>
 import { ref, inject } from 'vue';
 
+import { firstOrderDifferentialEquationApproximationRequesterConstructor }
+  from '../user-requests-first-order-differential-equation-approximation.js';
+
 import LabeledTextArea from './LabeledTextArea.vue';
 import LabeledInput from './LabeledInput.vue';
 
@@ -14,17 +17,28 @@ const initialValueOrdinate = ref('');
 
 const approximationEvaluationPath = ref([]);
 
-function getExpressionApproximation() {
-  approximator(
-    expressionText.value,
-    variableName.value,
-    undeterminedFunctionName.value,
-    [initialValueAbscissa.value, initialValueOrdinate.value],
-    response => {
-      approximationEvaluationPath.value = response;
+const firstOrderDifferentialEquationApproximationRequester
+  = firstOrderDifferentialEquationApproximationRequesterConstructor(
+    { approximator },
+    {
+      handle(response) {
+        approximationEvaluationPath.value = response.approximatedSolution;
+      },
     },
-    error => {
-      console.log(error);
+    {
+      handle(error) {
+        console.log(error);
+      },
+    },
+  );
+
+function getExpressionApproximation() {
+  firstOrderDifferentialEquationApproximationRequester.request(
+    {
+      expressionText: expressionText.value,
+      variableName: variableName.value,
+      undeterminedFunctionName: undeterminedFunctionName.value,
+      initialValueCoordinates: [initialValueAbscissa.value, initialValueOrdinate.value],
     },
   );
 }
@@ -97,7 +111,7 @@ function resetResponseToInitialState() {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(evaluationPoint, index) in approximationEvaluationPath">
+          <tr v-for="(evaluationPoint, index) in approximationEvaluationPath" :key="index">
             <td>{{ index + 1 }}</td>
             <td>{{ evaluationPoint.abscissa.toFixed(3) }}</td>
             <td>{{ evaluationPoint.ordinate.toFixed(3) }}</td>
