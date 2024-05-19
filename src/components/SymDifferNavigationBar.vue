@@ -1,5 +1,4 @@
-<script setup>
-import NavigationLink from './NavigationLink.vue';
+<script setup> import NavigationLink from './NavigationLink.vue';
 </script>
 
 <template>
@@ -16,7 +15,7 @@ import NavigationLink from './NavigationLink.vue';
   </div>
 </template>
 
-<style>
+<style scoped>
   .sym-differ-nav {
     border-bottom: 1px solid var(--color-border);
     margin-bottom: 1rem;

@@ -5,7 +5,7 @@ defineProps({
 });
 </script>
 
-<template>
+<template scoped>
   <li class="navigation-link">
     <RouterLink :to="target">
       {{text}}

@@ -15,7 +15,7 @@ defineProps({
   </div>
 </template>
 
-<style>
+<style scoped>
   .labeled-response {
     padding: 0.5rem;
     width: 100%;

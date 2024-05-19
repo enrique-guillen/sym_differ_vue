@@ -16,7 +16,7 @@ defineProps({
   </div>
 </template>
 
-<style>
+<style scoped>
   .labeled-textarea {
     padding: 0.5rem;
     width: 100%;

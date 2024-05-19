@@ -101,7 +101,7 @@ function setExpressionDerivativeError(error) {
   </form>
 </template>
 
-<style>
+<style scoped>
   .derive-expression-form {
     width: 100%;
   }

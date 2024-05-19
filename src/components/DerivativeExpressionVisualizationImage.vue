@@ -14,7 +14,7 @@ defineProps({
   />
 </template>
 
-<style>
+<style scoped>
   .differentiation-form-img {
     display:inline;
     width:100%;

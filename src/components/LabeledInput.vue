@@ -16,7 +16,7 @@ defineProps({
   </div>
 </template>
 
-<style>
+<style scoped>
   .labeled-input {
     padding: 0.5rem;
     display: grid;

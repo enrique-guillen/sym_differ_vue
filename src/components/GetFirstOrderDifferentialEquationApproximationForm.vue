@@ -15,7 +15,7 @@ const initialValueOrdinate = ref('');
 const approximationEvaluationPath = ref([]);
 
 function getExpressionApproximation() {
-  console.log(approximator(
+  approximator(
     expressionText.value,
     variableName.value,
     undeterminedFunctionName.value,
@@ -26,7 +26,7 @@ function getExpressionApproximation() {
     error => {
       console.log(error);
     },
-  ));
+  );
 }
 
 function resetResponseToInitialState() {
@@ -108,7 +108,7 @@ function resetResponseToInitialState() {
   </form>
 </template>
 
-<style>
+<style scoped>
   .approximate-first-order-ode-solution h2 {
     border-bottom: 2px solid var(--color-border);
     margin-bottom: 1rem;

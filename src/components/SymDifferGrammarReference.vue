@@ -91,7 +91,7 @@ const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
   </div>
 </template>
 
-<style>
+<style scoped>
   .sym-differ-reference h2, .sym-differ-reference h3 {
     border-bottom: 2px solid var(--color-border);
     margin-bottom: 1rem;

@@ -7,7 +7,7 @@ defineProps({
   failureReasonTextareaClass: {
     type: String,
     required: true,
-  }
+  },
 });
 </script>
 
@@ -18,7 +18,7 @@ defineProps({
   </div>
 </template>
 
-<style>
+<style scoped>
   .labeled-failure {
     padding: 0.5rem;
     width: 100%;

@@ -11,7 +11,7 @@ defineProps({
   &lt;<span class="reference-token-name">{{ tokenName }}</span>&gt;
 </template>
 
-<style>
+<style scoped>
   .reference-token-name {
     color: #3333ff;
     font-weight: 600;
