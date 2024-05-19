@@ -42,7 +42,7 @@ function approximateFirstOrderDifferentialEquationSolution(
       },
     )
     .then(response => {
-      successCallback(response.data.approximated_solution);
+      successCallback({ approximatedSolution: response.data.approximated_solution });
     })
     .catch(error => {
       failureCallback({ message: error.response.data.message });
