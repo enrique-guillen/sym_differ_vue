@@ -12,6 +12,7 @@ function firstOrderDifferentialEquationApproximationRequesterConstructor(approxi
       handler.handle(
         {
           approximatedSolution: response.approximatedSolution,
+          message: '',
           showApproximationExpressionPath: true,
           showFailure: false,
         },
@@ -24,6 +25,7 @@ function firstOrderDifferentialEquationApproximationRequesterConstructor(approxi
       handler.handle(
         {
           message: response.message,
+          approximatedSolution: [],
           showApproximationExpressionPath: false,
           showFailure: true,
         },

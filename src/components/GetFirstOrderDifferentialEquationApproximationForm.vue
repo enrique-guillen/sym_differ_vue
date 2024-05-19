@@ -25,7 +25,7 @@ const firstOrderDifferentialEquationApproximationRequester
   = firstOrderDifferentialEquationApproximationRequesterConstructor(
     { approximator },
     { handle: updateView },
-    { handle: updateView }
+    { handle: updateView },
   );
 
 function getExpressionApproximation() {
@@ -78,24 +78,34 @@ function resetResponseToInitialState() {
       a valid variable under the definition of variable given in the aforementioned grammar reference document.
     </p>
 
-    <LabeledTextArea inputLabelText="Expression:" v-model="expressionText" @focus="resetResponseToInitialState" />
+    <LabeledTextArea
+      inputClass="expression-text"
+      inputLabelText="Expression:"
+      v-model="expressionText"
+      @focus="resetResponseToInitialState" />
 
-    <LabeledInput inputLabelText="Undetermined function name (y): "
-                  v-model="undeterminedFunctionName"
-                  @focus="resetResponseToInitialState" />
+    <LabeledInput
+      inputLabelText="Undetermined function name (y): "
+      v-model="undeterminedFunctionName"
+      @focus="resetResponseToInitialState" />
 
-    <LabeledInput inputLabelText="Variable name (t): " v-model="variableName" @focus="resetResponseToInitialState" />
+    <LabeledInput
+      inputLabelText="Variable name (t): "
+      v-model="variableName"
+      @focus="resetResponseToInitialState" />
 
-    <LabeledInput inputLabelText="Initial value coordinate (x, y) abscissa:"
-                  v-model="initialValueAbscissa"
-                  @focus="resetResponseToInitialState" />
+    <LabeledInput
+      inputLabelText="Initial value coordinate (x, y) abscissa:"
+      v-model="initialValueAbscissa"
+      @focus="resetResponseToInitialState" />
 
-    <LabeledInput inputLabelText="Initial value coordinate (x, y) ordinate:"
-                  v-model="initialValueOrdinate"
-                  @focus="resetResponseToInitialState" />
+    <LabeledInput
+      inputLabelText="Initial value coordinate (x, y) ordinate:"
+      v-model="initialValueOrdinate"
+      @focus="resetResponseToInitialState" />
 
     <div class="button-container">
-      <button class="derive-button" type="button" @click="getExpressionApproximation">Approximate</button>
+      <button class="approximate-button" type="button" @click="getExpressionApproximation">Approximate</button>
       <button class="clear-button" type="button" @click="resetResponseToInitialState">Clear</button>
     </div>
 
@@ -105,7 +115,7 @@ function resetResponseToInitialState() {
       :failureReason="errorMessage" />
 
     <template v-if="showApproximationExpressionPath && approximationEvaluationPath.length > 0">
-      <table>
+      <table class="labeled-response">
         <caption>Approximate values for expression: {{ expressionText }}</caption>
         <thead>
           <tr>

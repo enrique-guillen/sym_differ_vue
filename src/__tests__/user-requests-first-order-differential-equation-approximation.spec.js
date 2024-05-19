@@ -25,7 +25,8 @@ describe('firstOrderDifferentialEquationApproximationRequester#request', () => {
     successHandlerMock
       .expects('handle')
       .withArgs({
-        approximatedSolution: [0.0, 0.1],
+        message: '',
+        approximatedSolution: [[0.0, 0.1]],
         showFailure: false,
         showApproximationExpressionPath: true,
       });
@@ -34,13 +35,14 @@ describe('firstOrderDifferentialEquationApproximationRequester#request', () => {
       .expects('handle')
       .withArgs({
         message: 'There was a problem.',
+        approximatedSolution: [],
         showFailure: true,
         showApproximationExpressionPath: false,
       });
 
     const correctSuccessCallbackBuiltMatcher
       = successCallback => {
-        successCallback({ approximatedSolution: [0.0, 0.1] });
+        successCallback({ approximatedSolution: [[0.0, 0.1]] });
         successHandlerMock.verify();
         return true;
       };
