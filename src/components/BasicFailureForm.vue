@@ -4,13 +4,17 @@ defineProps({
     type: String,
     required: true,
   },
+  failureReasonTextareaClass: {
+    type: String,
+    required: true,
+  }
 });
 </script>
 
 <template>
   <div class="labeled-failure">
     <label class="textarea-label" for="fail">Failure:</label>
-    <textarea :value="failureReason" rows=1 readonly></textarea>
+    <textarea :class="failureReasonTextareaClass" :value="failureReason" rows=1 readonly></textarea>
   </div>
 </template>
 

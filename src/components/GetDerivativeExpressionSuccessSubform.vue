@@ -10,7 +10,8 @@ defineProps({
 <template>
   <div class="labeled-response">
     <label class="textarea-label" for="derivative-expression-text">Response:</label>
-    <textarea :value="derivativeExpressionText" rows=1 readonly></textarea>
+    <textarea class="derivative-expression-text" :value="derivativeExpressionText" rows=1 readonly>
+    </textarea>
   </div>
 </template>
 

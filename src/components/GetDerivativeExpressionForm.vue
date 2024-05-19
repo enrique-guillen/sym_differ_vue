@@ -92,6 +92,7 @@ function setExpressionDerivativeError(error) {
       :derivativeExpressionText="derivativeExpressionText" />
 
     <BasicFailureForm
+      failureReasonTextareaClass="derivative-expression-text"
       v-if="showGetExpressionDerivativeFailed"
       :failureReason="getExpressionDerivativeFailedReason" />
 

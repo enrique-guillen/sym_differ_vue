@@ -5,13 +5,14 @@ defineEmits(['focus']);
 
 defineProps({
   inputLabelText: { type: String, required: true },
+  inputClass: { type: String, required: false },
 });
 </script>
 
 <template>
   <div class="labeled-input">
     <label class="input-label" for="inputValue">{{ inputLabelText }}</label>
-    <input v-model="inputValue" @focus="$emit('focus')" />
+    <input v-model="inputValue" @focus="$emit('focus')" :class="inputClass" />
   </div>
 </template>
 

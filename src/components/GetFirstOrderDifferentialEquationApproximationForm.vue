@@ -20,8 +20,12 @@ function getExpressionApproximation() {
     variableName.value,
     undeterminedFunctionName.value,
     [initialValueAbscissa.value, initialValueOrdinate.value],
-    response => { approximationEvaluationPath.value = response },
-    error => { console.log(error) }
+    response => {
+      approximationEvaluationPath.value = response;
+    },
+    error => {
+      console.log(error);
+    },
   ));
 }
 

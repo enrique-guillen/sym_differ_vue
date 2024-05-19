@@ -24,10 +24,10 @@ function generateImage(expressionText, variable, successCallback) {
 }
 
 function approximateFirstOrderDifferentialEquationSolution(
-  expressionText, variableName, undeterminedFunctionName, initialValueCoordinates, successCallback, failureCallback
+  expressionText, variableName, undeterminedFunctionName, initialValueCoordinates, successCallback, failureCallback,
 ) {
-  const approximateFirstOrderDifferentialEquationSolutionUrl =
-    'http://127.0.0.1:3000/first_order_differential_equation_approximation';
+  const approximateFirstOrderDifferentialEquationSolutionUrl
+    = 'http://127.0.0.1:3000/first_order_differential_equation_approximation';
 
   axios
     .get(
@@ -37,9 +37,9 @@ function approximateFirstOrderDifferentialEquationSolution(
           expression_text: expressionText,
           variable_name: variableName,
           undetermined_function_name: undeterminedFunctionName,
-          initial_value_coordinates: initialValueCoordinates
-        }
-      }
+          initial_value_coordinates: initialValueCoordinates,
+        },
+      },
     )
     .then(response => {
       successCallback(response.data.approximated_solution);

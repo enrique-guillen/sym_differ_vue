@@ -6,7 +6,7 @@ import GetDerivativeExpressionForm from '../GetDerivativeExpressionForm.vue';
 describe('GetDerivativeExpressionForm', () => {
   it('renders properly', () => {
     const wrapper = mount(GetDerivativeExpressionForm, {});
-    expect(wrapper.text()).toContain('Your expression:Your variable:DeriveClearResponse:');
+    expect(wrapper.text()).toContain('Your expression:Your variable: DeriveClearResponse:');
   });
 
   it('responds to getExpressionDerivative as expected', () => {
@@ -38,9 +38,10 @@ describe('GetDerivativeExpressionForm', () => {
   it('sets the expected values after calling setExpressionAndExpressionDerivativeImage', async () => {
     const wrapper = mount(GetDerivativeExpressionForm, {});
 
-    await wrapper.vm.setExpressionAndExpressionDerivativeImage('<svg>...</svg>');
+    await wrapper.vm.setExpressionAndExpressionDerivativeImage({ image: '<svg>...</svg>' });
 
-    expect(wrapper.find('.differentiation-form-img').element.src).toEqual('data:image/svg+xml;base64, dW5kZWZpbmVk');
+    expect(wrapper.find('.differentiation-form-img').element.src)
+      .toEqual('data:image/svg+xml;base64, PHN2Zz4uLi48L3N2Zz4=');
   });
 
   it('resets the expected values after calling resetResponseToInitialState', async () => {
