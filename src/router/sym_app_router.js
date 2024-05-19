@@ -21,7 +21,7 @@ const router = createRouter({
     {
       path: '/grammarreference',
       name: 'grammarreference',
-      component: () => import('../components/SymDifferGrammarReference.vue'),
+      component: () => import('../components/GrammarReference.vue'),
     },
   ],
 });
