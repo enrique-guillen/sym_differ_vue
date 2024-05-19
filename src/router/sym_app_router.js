@@ -16,7 +16,7 @@ const router = createRouter({
     {
       path: '/first_order_de_approximation_form',
       name: 'first_order_de_approximation_form',
-      component: () => import('../components/GetFirstOrderDifferentialEquationApproximationForm.vue'),
+      component: () => import('../components/FirstOrderDifferentialEquationApproximationForm.vue'),
     },
     {
       path: '/grammarreference',

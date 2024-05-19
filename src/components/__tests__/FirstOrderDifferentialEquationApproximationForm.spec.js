@@ -2,12 +2,12 @@ import { describe, it, expect } from 'vitest';
 
 import { mount } from '@vue/test-utils';
 
-import GetFirstOrderDifferentialEquationApproximationForm
-  from '../GetFirstOrderDifferentialEquationApproximationForm.vue';
+import FirstOrderDifferentialEquationApproximationForm
+  from '../FirstOrderDifferentialEquationApproximationForm.vue';
 
-describe('GetFirstOrderDifferentialEquationApproximationForm', () => {
+describe('FirstOrderDifferentialEquationApproximationForm', () => {
   it('renders properly', () => {
-    const wrapper = mount(GetFirstOrderDifferentialEquationApproximationForm, {});
+    const wrapper = mount(FirstOrderDifferentialEquationApproximationForm, {});
 
     const expectedText = 'Expression:Undetermined function name (y): Variable name (t): Initial value';
 
@@ -25,13 +25,13 @@ describe('GetFirstOrderDifferentialEquationApproximationForm', () => {
       },
     };
 
-    const wrapper = mount(GetFirstOrderDifferentialEquationApproximationForm, mockPlugins);
+    const wrapper = mount(FirstOrderDifferentialEquationApproximationForm, mockPlugins);
 
     wrapper.find('.approximate-button').trigger('click');
   });
 
   it('has the expected content after calling updateView with successful response', async () => {
-    const wrapper = mount(GetFirstOrderDifferentialEquationApproximationForm, {});
+    const wrapper = mount(FirstOrderDifferentialEquationApproximationForm, {});
 
     const mockSuccessfulResponse = {
       message: '',
@@ -60,7 +60,7 @@ describe('GetFirstOrderDifferentialEquationApproximationForm', () => {
   });
 
   it('has the expected content after calling updateView with failure response', async () => {
-    const wrapper = mount(GetFirstOrderDifferentialEquationApproximationForm, {});
+    const wrapper = mount(FirstOrderDifferentialEquationApproximationForm, {});
 
     const mockFailureResponse = {
       message: 'there_was_a_problem',
@@ -79,7 +79,7 @@ describe('GetFirstOrderDifferentialEquationApproximationForm', () => {
   });
 
   it('resets the expected values after calling resetResponseToInitialState', async () => {
-    const wrapper = mount(GetFirstOrderDifferentialEquationApproximationForm, {});
+    const wrapper = mount(FirstOrderDifferentialEquationApproximationForm, {});
 
     await wrapper.vm.updateView({
       message: 'there_was_a_problem',
