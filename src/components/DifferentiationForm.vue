@@ -10,7 +10,7 @@ import LabeledTextArea from './LabeledTextArea.vue';
 import LabeledInput from './LabeledInput.vue';
 import GetDerivativeExpressionSuccessSubform from './GetDerivativeExpressionSuccessSubform.vue';
 import BasicFailureForm from './BasicFailureForm.vue';
-import DerivativeExpressionVisualizationImage from './DerivativeExpressionVisualizationImage.vue';
+import DifferentiationVisualizationImage from './DifferentiationVisualizationImage.vue';
 
 const derive = inject('derive');
 const imager = inject('imager');
@@ -91,7 +91,7 @@ function setExpressionAndExpressionDerivativeImage(response) {
       v-if="showGetExpressionDerivativeFailed"
       :failureReason="getExpressionDerivativeFailedReason" />
 
-    <DerivativeExpressionVisualizationImage
+    <DifferentiationVisualizationImage
       :derivativeExpressionVisualizationImage="expressionAndDerivativeExpressionImage" />
   </form>
 </template>
