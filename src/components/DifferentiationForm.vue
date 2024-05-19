@@ -8,7 +8,7 @@ import { initialImage } from '../initial-expression-and-derivative-expression-im
 
 import LabeledTextArea from './LabeledTextArea.vue';
 import LabeledInput from './LabeledInput.vue';
-import GetDerivativeExpressionSuccessSubform from './GetDerivativeExpressionSuccessSubform.vue';
+import DifferentiationSuccessResponse from './DifferentiationSuccessResponse.vue';
 import BasicFailureForm from './BasicFailureForm.vue';
 import DifferentiationVisualizationImage from './DifferentiationVisualizationImage.vue';
 
@@ -82,7 +82,7 @@ function setExpressionAndExpressionDerivativeImage(response) {
       <button class="clear-button" type="button" @click="resetResponseToInitialState">Clear</button>
     </div>
 
-    <GetDerivativeExpressionSuccessSubform
+    <DifferentiationSuccessResponse
       v-if="showGetExpressionDerivativeSucceeded"
       :derivativeExpressionText="derivativeExpressionText" />
 
