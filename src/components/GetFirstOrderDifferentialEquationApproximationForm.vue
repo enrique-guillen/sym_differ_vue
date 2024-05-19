@@ -7,6 +7,8 @@ import { firstOrderDifferentialEquationApproximationRequesterConstructor }
 import LabeledTextArea from './LabeledTextArea.vue';
 import LabeledInput from './LabeledInput.vue';
 import BasicFailureForm from './BasicFailureForm.vue';
+import FirstOrderDifferentialEquationApproximationResponse
+  from './FirstOrderDifferentialEquationApproximationResponse.vue';
 
 const approximator = inject('firstOrderDifferentialEquationApproximator');
 
@@ -115,29 +117,11 @@ function resetResponseToInitialState() {
       :failureReason="errorMessage" />
 
     <template v-if="showApproximationExpressionPath && approximationEvaluationPath.length > 0">
-      <table class="labeled-response">
-        <caption>Approximate values for expression: {{ expressionText }}</caption>
-        <thead>
-          <tr>
-            <th><div class="headerline">Index</div></th>
-            <th>
-              <div class="headerline">Abscissa</div>
-              <div class="headerline">({{ variableName }})</div>
-            </th>
-            <th>
-              <div class="headerline">Approximate Ordinate</div>
-              <div class="headerline">({{ undeterminedFunctionName }})</div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(evaluationPoint, index) in approximationEvaluationPath" :key="index">
-            <td>{{ index + 1 }}</td>
-            <td>{{ evaluationPoint.abscissa.toFixed(3) }}</td>
-            <td>{{ evaluationPoint.ordinate.toFixed(3) }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <FirstOrderDifferentialEquationApproximationResponse
+        :expressionText="expressionText"
+        :variableName="variableName"
+        :undeterminedFunctionName="undeterminedFunctionName"
+        :approximatedEvaluationPath="approximationEvaluationPath" />
     </template>
   </form>
 </template>
@@ -174,40 +158,5 @@ function resetResponseToInitialState() {
 
   .approximate-first-order-ode-solution button:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
-  }
-
-  table {
-    padding-top: 1rem;
-    border-collapse: separate;
-    border-spacing: 0px;
-    background-color: #f9f9f9;
-
-    border: 1px white solid;
-    border-radius: 4px;
-
-    margin: 0 auto;
-    width: 90%;
-  }
-
-  table caption {
-    font-weight: 600;
-  }
-
-  table th {
-    text-align: center;
-    background-color: #915F6D;
-  }
-
-  table .headerline {
-    color: white;
-    font-weight: 600;
-  }
-
-  table td {
-    text-align: center;
-  }
-
-  table tr:hover {
-    background-color: #c0c5ec;
   }
 </style>
