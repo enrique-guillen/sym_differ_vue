@@ -6,6 +6,7 @@ import { firstOrderDifferentialEquationApproximationRequesterConstructor }
 
 import LabeledTextArea from './LabeledTextArea.vue';
 import LabeledInput from './LabeledInput.vue';
+import BasicFailureForm from './BasicFailureForm.vue';
 
 const approximator = inject('firstOrderDifferentialEquationApproximator');
 
@@ -16,20 +17,15 @@ const initialValueAbscissa = ref('');
 const initialValueOrdinate = ref('');
 
 const approximationEvaluationPath = ref([]);
+const errorMessage = ref('');
+const showApproximationExpressionPath = ref(false);
+const showFailure = ref(false);
 
 const firstOrderDifferentialEquationApproximationRequester
   = firstOrderDifferentialEquationApproximationRequesterConstructor(
     { approximator },
-    {
-      handle(response) {
-        approximationEvaluationPath.value = response.approximatedSolution;
-      },
-    },
-    {
-      handle(error) {
-        console.log(error);
-      },
-    },
+    { handle: updateView },
+    { handle: updateView }
   );
 
 function getExpressionApproximation() {
@@ -43,8 +39,17 @@ function getExpressionApproximation() {
   );
 }
 
+function updateView(response) {
+  errorMessage.value = response.message;
+  approximationEvaluationPath.value = response.approximatedSolution;
+  showApproximationExpressionPath.value = response.showApproximationExpressionPath;
+  showFailure.value = response.showFailure;
+}
+
 function resetResponseToInitialState() {
   approximationEvaluationPath.value = [];
+  showApproximationExpressionPath.value = false;
+  showFailure.value = false;
 }
 
 </script>
@@ -94,7 +99,12 @@ function resetResponseToInitialState() {
       <button class="clear-button" type="button" @click="resetResponseToInitialState">Clear</button>
     </div>
 
-    <template v-if="approximationEvaluationPath.length > 0">
+    <BasicFailureForm
+      failureReasonTextareaClass="first-order-differential-equation-approximation-error"
+      v-if="showFailure"
+      :failureReason="errorMessage" />
+
+    <template v-if="showApproximationExpressionPath && approximationEvaluationPath.length > 0">
       <table>
         <caption>Approximate values for expression: {{ expressionText }}</caption>
         <thead>
