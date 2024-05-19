@@ -6,12 +6,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../components/GetDerivativeExpressionForm.vue'),
+      component: () => import('../components/DifferentiationForm.vue'),
     },
     {
       path: '/differentiation',
       name: 'differentiation',
-      component: () => import('../components/GetDerivativeExpressionForm.vue'),
+      component: () => import('../components/DifferentiationForm.vue'),
     },
     {
       path: '/first_order_de_approximation_form',

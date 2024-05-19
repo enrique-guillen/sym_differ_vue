@@ -1,16 +1,16 @@
 import { describe, it, expect } from 'vitest';
 
 import { mount } from '@vue/test-utils';
-import GetDerivativeExpressionForm from '../GetDerivativeExpressionForm.vue';
+import DifferentiationForm from '../DifferentiationForm.vue';
 
-describe('GetDerivativeExpressionForm', () => {
+describe('DifferentiationForm', () => {
   it('renders properly', () => {
-    const wrapper = mount(GetDerivativeExpressionForm, {});
+    const wrapper = mount(DifferentiationForm, {});
     expect(wrapper.text()).toContain('Your expression:Your variable: DeriveClearResponse:');
   });
 
   it('responds to getExpressionDerivative as expected', () => {
-    const wrapper = mount(GetDerivativeExpressionForm, {
+    const wrapper = mount(DifferentiationForm, {
       global: {
         provide: {
           derive() { },
@@ -22,7 +22,7 @@ describe('GetDerivativeExpressionForm', () => {
   });
 
   it('sets the expected values after calling updateView with successful response', async () => {
-    const wrapper = mount(GetDerivativeExpressionForm, {});
+    const wrapper = mount(DifferentiationForm, {});
 
     await wrapper.vm.updateView({
       message: '',
@@ -37,7 +37,7 @@ describe('GetDerivativeExpressionForm', () => {
   });
 
   it('sets the expected values after calling setExpressionAndExpressionDerivativeImage', async () => {
-    const wrapper = mount(GetDerivativeExpressionForm, {});
+    const wrapper = mount(DifferentiationForm, {});
 
     await wrapper.vm.setExpressionAndExpressionDerivativeImage({ image: '<svg>...</svg>' });
 
@@ -46,7 +46,7 @@ describe('GetDerivativeExpressionForm', () => {
   });
 
   it('resets the expected values after calling resetResponseToInitialState', async () => {
-    const wrapper = mount(GetDerivativeExpressionForm, {});
+    const wrapper = mount(DifferentiationForm, {});
 
     await wrapper.vm.updateView({
       message: '',
@@ -63,7 +63,7 @@ describe('GetDerivativeExpressionForm', () => {
   });
 
   it('sets the expected values after calling setExpressionDerivativeError', async () => {
-    const wrapper = mount(GetDerivativeExpressionForm, {});
+    const wrapper = mount(DifferentiationForm, {});
 
     await wrapper.vm.updateView({
       message: 'invalid_syntax_error',
