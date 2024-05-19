@@ -21,6 +21,7 @@ describe('derivativeExpressionRequester#request', () => {
       .expects('handle')
       .withArgs({
         derivativeExpressionText: '3',
+        message: '',
         showGetExpressionDerivativeFailed: false,
         showGetExpressionDerivativeSucceeded: true,
       });
@@ -28,6 +29,7 @@ describe('derivativeExpressionRequester#request', () => {
     failureHandlerMock
       .expects('handle')
       .withArgs({
+        derivativeExpressionText: '',
         message: 'There was a problem.',
         showGetExpressionDerivativeFailed: true,
         showGetExpressionDerivativeSucceeded: false,

@@ -12,6 +12,7 @@ function derivativeExpressionRequesterConstructor(deriver, successHandler, failu
     return response => {
       handler.handle(
         {
+          message: '',
           derivativeExpressionText: response.derivativeExpressionText,
           showGetExpressionDerivativeFailed: false,
           showGetExpressionDerivativeSucceeded: true,
@@ -25,6 +26,7 @@ function derivativeExpressionRequesterConstructor(deriver, successHandler, failu
       handler.handle(
         {
           message: response.message,
+          derivativeExpressionText: '',
           showGetExpressionDerivativeFailed: true,
           showGetExpressionDerivativeSucceeded: false,
         },

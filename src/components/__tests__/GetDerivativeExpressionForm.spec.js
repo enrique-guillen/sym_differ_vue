@@ -21,10 +21,11 @@ describe('GetDerivativeExpressionForm', () => {
     wrapper.find('.derive-button').trigger('click');
   });
 
-  it('sets the expected values after calling setExpressionDerivativeResponse', async () => {
+  it('sets the expected values after calling updateView with successful response', async () => {
     const wrapper = mount(GetDerivativeExpressionForm, {});
 
-    await wrapper.vm.setExpressionDerivativeResponse({
+    await wrapper.vm.updateView({
+      message: '',
       derivativeExpressionText: '3',
       showGetExpressionDerivativeFailed: false,
       showGetExpressionDerivativeSucceeded: true,
@@ -47,15 +48,12 @@ describe('GetDerivativeExpressionForm', () => {
   it('resets the expected values after calling resetResponseToInitialState', async () => {
     const wrapper = mount(GetDerivativeExpressionForm, {});
 
-    await wrapper.vm.setExpressionDerivativeResponse({
+    await wrapper.vm.updateView({
+      message: '',
       derivativeExpressionText: '3',
       showGetExpressionDerivativeFailed: false,
       showGetExpressionDerivativeSucceeded: true,
     });
-
-    expect(wrapper.find('.derivative-expression-text').element.value).toEqual('3');
-    expect(wrapper.find('.labeled-response').exists()).toBe(true);
-    expect(wrapper.find('.labeled-failure').exists()).toBe(false);
 
     await wrapper.vm.resetResponseToInitialState();
 
@@ -67,8 +65,9 @@ describe('GetDerivativeExpressionForm', () => {
   it('sets the expected values after calling setExpressionDerivativeError', async () => {
     const wrapper = mount(GetDerivativeExpressionForm, {});
 
-    await wrapper.vm.setExpressionDerivativeError({
+    await wrapper.vm.updateView({
       message: 'invalid_syntax_error',
+      derivativeExpressionText: '',
       showGetExpressionDerivativeFailed: true,
       showGetExpressionDerivativeSucceeded: false,
     });

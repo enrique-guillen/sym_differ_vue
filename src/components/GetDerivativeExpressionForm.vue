@@ -25,8 +25,8 @@ const expressionAndDerivativeExpressionImage = ref(stringToBase64(initialImage.t
 
 const derivativeExpressionRequester = derivativeExpressionRequesterConstructor(
   { derive },
-  { handle: setExpressionDerivativeResponse },
-  { handle: setExpressionDerivativeError },
+  { handle: updateView },
+  { handle: updateView },
 );
 
 const expressionAndDerivativeExpressionImageRequester = expressionAndDerivativeExpressionImageRequesterConstructor(
@@ -45,7 +45,8 @@ function resetResponseToInitialState() {
   showGetExpressionDerivativeSucceeded.value = true;
 }
 
-function setExpressionDerivativeResponse(response) {
+function updateView(response) {
+  getExpressionDerivativeFailedReason.value = response.message;
   derivativeExpressionText.value = response.derivativeExpressionText;
   showGetExpressionDerivativeFailed.value = response.showGetExpressionDerivativeFailed;
   showGetExpressionDerivativeSucceeded.value = response.showGetExpressionDerivativeSucceeded;
@@ -53,12 +54,6 @@ function setExpressionDerivativeResponse(response) {
 
 function setExpressionAndExpressionDerivativeImage(response) {
   expressionAndDerivativeExpressionImage.value = stringToBase64(response.image);
-}
-
-function setExpressionDerivativeError(error) {
-  getExpressionDerivativeFailedReason.value = error.message;
-  showGetExpressionDerivativeFailed.value = error.showGetExpressionDerivativeFailed;
-  showGetExpressionDerivativeSucceeded.value = error.showGetExpressionDerivativeSucceeded;
 }
 </script>
 
