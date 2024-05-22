@@ -14,6 +14,7 @@ import FirstOrderDifferentialEquationApproximationResponse
 import DifferentiationVisualizationImage from './DifferentiationVisualizationImage.vue';
 
 const approximator = inject('firstOrderDifferentialEquationApproximator');
+const illustrator = inject('differentialEquationIllustrator');
 
 const expressionText = ref('');
 const undeterminedFunctionName = ref('');
@@ -35,14 +36,14 @@ const firstOrderDifferentialEquationApproximationRequester
   );
 
 function getExpressionApproximation() {
-  firstOrderDifferentialEquationApproximationRequester.request(
-    {
-      expressionText: expressionText.value,
-      variableName: variableName.value,
-      undeterminedFunctionName: undeterminedFunctionName.value,
-      initialValueCoordinates: [initialValueAbscissa.value, initialValueOrdinate.value],
-    },
-  );
+  const params = {
+    expressionText: expressionText.value,
+    variableName: variableName.value,
+    undeterminedFunctionName: undeterminedFunctionName.value,
+    initialValueCoordinates: [initialValueAbscissa.value, initialValueOrdinate.value],
+  };
+
+  firstOrderDifferentialEquationApproximationRequester.request(params);
 }
 
 function updateView(response) {

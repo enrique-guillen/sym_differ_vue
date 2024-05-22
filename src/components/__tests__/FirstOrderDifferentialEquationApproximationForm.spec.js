@@ -18,9 +18,8 @@ describe('FirstOrderDifferentialEquationApproximationForm', () => {
     const mockPlugins = {
       global: {
         provide: {
-          derive() { },
-          imager() { },
           firstOrderDifferentialEquationApproximator() { },
+          differentialEquationIllustrator() { },
         },
       },
     };
