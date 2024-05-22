@@ -27,17 +27,17 @@ function approximateFirstOrderDifferentialEquationSolution(equationParameters, s
   const approximateFirstOrderDifferentialEquationSolutionUrl
     = 'http://127.0.0.1:3000/first_order_differential_equation_approximation';
 
+  const requestParameters = {
+    expression_text: equationParameters.expressionText,
+    variable_name: equationParameters.variableName,
+    undetermined_function_name: equationParameters.undeterminedFunctionName,
+    initial_value_coordinates: equationParameters.initialValueCoordinates,
+  };
+
   axios
     .get(
       approximateFirstOrderDifferentialEquationSolutionUrl,
-      {
-        params: {
-          expression_text: equationParameters.expressionText,
-          variable_name: equationParameters.variableName,
-          undetermined_function_name: equationParameters.undeterminedFunctionName,
-          initial_value_coordinates: equationParameters.initialValueCoordinates,
-        },
-      },
+      { params: requestParameters },
     )
     .then(response => {
       successCallback({ approximatedSolution: response.data.approximated_solution });
@@ -47,4 +47,33 @@ function approximateFirstOrderDifferentialEquationSolution(equationParameters, s
     });
 }
 
-export { derive, generateImage, approximateFirstOrderDifferentialEquationSolution };
+function illustrateDifferentialEquationApproximation(equationParameters, successCallback, failureCallback) {
+  const approximateFirstOrderDifferentialEquationSolutionUrl
+    = 'http://127.0.0.1:3000/differential_equation_approximation_illustration';
+
+  const requestParameters = {
+    expression_text: equationParameters.expressionText,
+    variable_name: equationParameters.variableName,
+    undetermined_function_name: equationParameters.undeterminedFunctionName,
+    initial_value_coordinates: equationParameters.initialValueCoordinates,
+  };
+
+  axios
+    .get(
+      approximateFirstOrderDifferentialEquationSolutionUrl,
+      { params: requestParameters },
+    )
+    .then(response => {
+      successCallback(response.data);
+    })
+    .catch(error => {
+      failureCallback({ message: error.response.data.message });
+    });
+}
+
+export {
+  derive,
+  generateImage,
+  approximateFirstOrderDifferentialEquationSolution,
+  illustrateDifferentialEquationApproximation,
+};
