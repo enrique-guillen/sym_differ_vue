@@ -6,6 +6,9 @@ import { initialImage } from '../initial-expression-and-derivative-expression-im
 import { firstOrderDifferentialEquationApproximationRequesterConstructor }
   from '../user-requests-first-order-differential-equation-approximation.js';
 
+import { differentialEquationApproximationIllustratorRequesterConstructor }
+  from '../differential-equation-approximation-illustration-requester.js';
+
 import LabeledTextArea from './LabeledTextArea.vue';
 import LabeledInput from './LabeledInput.vue';
 import BasicFailureForm from './BasicFailureForm.vue';
@@ -14,7 +17,7 @@ import FirstOrderDifferentialEquationApproximationResponse
 import DifferentiationVisualizationImage from './DifferentiationVisualizationImage.vue';
 
 const approximator = inject('firstOrderDifferentialEquationApproximator');
-const illustrator = inject('differentialEquationIllustrator');
+const illustrate = inject('differentialEquationIllustrator');
 
 const expressionText = ref('');
 const undeterminedFunctionName = ref('');
@@ -35,6 +38,12 @@ const firstOrderDifferentialEquationApproximationRequester
     { handle: updateView },
   );
 
+const differentialEquationApproximationIllustratorRequester
+  = differentialEquationApproximationIllustratorRequesterConstructor(
+    { illustrate },
+    { handle: updateImage },
+  );
+
 function getExpressionApproximation() {
   const params = {
     expressionText: expressionText.value,
@@ -44,6 +53,7 @@ function getExpressionApproximation() {
   };
 
   firstOrderDifferentialEquationApproximationRequester.request(params);
+  differentialEquationApproximationIllustratorRequester.request(params);
 }
 
 function updateView(response) {
