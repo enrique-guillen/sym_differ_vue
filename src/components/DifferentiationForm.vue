@@ -92,6 +92,7 @@ function setExpressionAndExpressionDerivativeImage(response) {
       :failureReason="getExpressionDerivativeFailedReason" />
 
     <DifferentiationVisualizationImage
+      imgClassLabel="differentiation-form-img"
       :derivativeExpressionVisualizationImage="expressionAndDerivativeExpressionImage" />
   </form>
 </template>

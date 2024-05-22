@@ -1,5 +1,7 @@
 <script setup>
 import { ref, inject } from 'vue';
+import { stringToBase64 } from 'uint8array-extras';
+import { initialImage } from '../initial-expression-and-derivative-expression-image.js';
 
 import { firstOrderDifferentialEquationApproximationRequesterConstructor }
   from '../user-requests-first-order-differential-equation-approximation.js';
@@ -9,6 +11,7 @@ import LabeledInput from './LabeledInput.vue';
 import BasicFailureForm from './BasicFailureForm.vue';
 import FirstOrderDifferentialEquationApproximationResponse
   from './FirstOrderDifferentialEquationApproximationResponse.vue';
+import DifferentiationVisualizationImage from './DifferentiationVisualizationImage.vue';
 
 const approximator = inject('firstOrderDifferentialEquationApproximator');
 
@@ -22,6 +25,7 @@ const approximationEvaluationPath = ref([]);
 const errorMessage = ref('');
 const showApproximationExpressionPath = ref(false);
 const showFailure = ref(false);
+const differentialEquationApproximationImage = ref(stringToBase64(initialImage.trim()));
 
 const firstOrderDifferentialEquationApproximationRequester
   = firstOrderDifferentialEquationApproximationRequesterConstructor(
@@ -54,6 +58,9 @@ function resetResponseToInitialState() {
   showFailure.value = false;
 }
 
+function updateImage(response) {
+  differentialEquationApproximationImage.value = stringToBase64(response.image);
+}
 </script>
 
 <template>
@@ -122,11 +129,19 @@ function resetResponseToInitialState() {
         :variableName="variableName"
         :undeterminedFunctionName="undeterminedFunctionName"
         :approximatedEvaluationPath="approximationEvaluationPath" />
+
+      <DifferentiationVisualizationImage
+        :derivativeExpressionVisualizationImage="differentialEquationApproximationImage"
+        imgClassLabel="differential-equation-approximation-img" />
     </template>
   </form>
 </template>
 
 <style scoped>
+  .approximate-first-order-ode-solution {
+    width: 100%;
+  }
+
   .approximate-first-order-ode-solution h2 {
     border-bottom: 2px solid var(--color-border);
     margin-bottom: 1rem;

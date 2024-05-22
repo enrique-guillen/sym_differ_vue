@@ -59,6 +59,29 @@ describe('FirstOrderDifferentialEquationApproximationForm', () => {
       .toEqual(expectedLabeledResponse);
   });
 
+  it('sets the expected values after calling updateImage', async () => {
+    const wrapper = mount(FirstOrderDifferentialEquationApproximationForm, {});
+
+    const mockSuccessfulResponse = {
+      message: '',
+      approximatedSolution: [
+        { abscissa: 0.0, ordinate: 0.0 },
+        { abscissa: 0.125, ordinate: 0.125 },
+      ],
+      showApproximationExpressionPath: true,
+      showFailure: false,
+    };
+
+    await wrapper.vm.updateView(mockSuccessfulResponse);
+
+    const mockImageResponse = { image: '<svg>...</svg>' };
+
+    await wrapper.vm.updateImage(mockImageResponse);
+
+    expect(wrapper.find('.differential-equation-approximation-img').element.src)
+      .toEqual('data:image/svg+xml;base64, PHN2Zz4uLi48L3N2Zz4=');
+  });
+
   it('has the expected content after calling updateView with failure response', async () => {
     const wrapper = mount(FirstOrderDifferentialEquationApproximationForm, {});
 
