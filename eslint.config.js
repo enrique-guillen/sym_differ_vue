@@ -24,4 +24,8 @@ export default [
       '@stylistic/object-curly-spacing': ['error', 'always'],
     },
   },
+  {
+    files: ['src/axios-adapter.js'],
+    rules: { camelcase: ['off'] },
+  },
 ];
