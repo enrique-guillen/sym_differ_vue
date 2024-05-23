@@ -27,7 +27,8 @@ const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
             <NamedToken tokenName="subtraction" /> |
             <NamedToken tokenName="multiplication" /> |
             <NamedToken tokenName="sine-application" /> |
-            <NamedToken tokenName="cosine-application" />
+            <NamedToken tokenName="cosine-application" /> |
+            <NamedToken tokenName="parenthesized-expression" />
       </li>
       <li>
         • <NamedToken tokenName="constant" /> ::= [0-9]+
@@ -60,6 +61,9 @@ const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
       </li>
       <li>
         • <NamedToken tokenName="cosine-application" /> ::= cosine(<NamedToken tokenName="expression" />)
+      </li>
+      <li>
+        • <NamedToken tokenName="parenthesized-expression" /> ::= (<NamedToken tokenName="expression" />)
       </li>
     </ul>
 
