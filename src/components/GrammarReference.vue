@@ -20,18 +20,25 @@ const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
       <li>
         • <NamedToken tokenName="expression" /> ::=
             <NamedToken tokenName="constant" /> |
+            <NamedToken tokenName="euler-number-constant" /> |
             <NamedToken tokenName="variable" /> |
             <NamedToken tokenName="positive" /> |
             <NamedToken tokenName="negation" /> |
             <NamedToken tokenName="sum" /> |
             <NamedToken tokenName="subtraction" /> |
             <NamedToken tokenName="multiplication" /> |
+            <NamedToken tokenName="division" /> |
+            <NamedToken tokenName="exponentiation" /> |
+            <NamedToken tokenName="natural-logarithm-application" /> |
             <NamedToken tokenName="sine-application" /> |
             <NamedToken tokenName="cosine-application" /> |
             <NamedToken tokenName="parenthesized-expression" />
       </li>
       <li>
         • <NamedToken tokenName="constant" /> ::= [0-9]+
+      </li>
+      <li>
+        • <NamedToken tokenName="euler-number-constant" /> ::= ~e
       </li>
       <li>
         • <NamedToken tokenName="variable" /> ::= [a-zA-Z]+
@@ -55,6 +62,17 @@ const featureFilesLink = ref(import.meta.env.VITE_APP_FEATURE_FILE);
       <li>
         • <NamedToken tokenName="multiplication" /> ::=
             <NamedToken tokenName="expression" /> * <NamedToken tokenName="expression" />
+      </li>
+      <li>
+        • <NamedToken tokenName="division" /> ::=
+            <NamedToken tokenName="expression" /> / <NamedToken tokenName="expression" />
+      </li>
+      <li>
+        • <NamedToken tokenName="exponentiation" /> ::=
+            <NamedToken tokenName="expression" /> ^ <NamedToken tokenName="expression" />
+      </li>
+      <li>
+        • <NamedToken tokenName="natural-logarithm-application" /> ::= ln(<NamedToken tokenName="expression" />)
       </li>
       <li>
         • <NamedToken tokenName="sine-application" /> ::= sine(<NamedToken tokenName="expression" />)
