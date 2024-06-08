@@ -38,8 +38,12 @@ defineProps({
     <tbody>
       <tr v-for="(evaluationPoint, index) in approximatedEvaluationPath" :key="index">
         <td>{{ index + 1 }}</td>
-        <td>{{ evaluationPoint.abscissa.toFixed(3) }}</td>
-        <td>{{ evaluationPoint.ordinate.toFixed(3) }}</td>
+        <td>
+          {{ evaluationPoint.abscissa == "undefined" ? evaluationPoint.abscissa : evaluationPoint.abscissa.toFixed(3) }}
+        </td>
+        <td>
+          {{ evaluationPoint.ordinate == "undefined" ? evaluationPoint.ordinate : evaluationPoint.ordinate.toFixed(3) }}
+        </td>
       </tr>
     </tbody>
   </table>
