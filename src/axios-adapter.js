@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 function derive(expressionText, variable, successCallback, failureCallback) {
-  const derivativeExpresssionUrl = 'http://127.0.0.1:3000/derivative_expression';
+  const derivativeExpresssionUrl = `${import.meta.env.VITE_BASE_API_URL}/derivative_expression`;
 
   axios
     .get(derivativeExpresssionUrl, { params: { expression: expressionText, variable } })
@@ -14,7 +14,8 @@ function derive(expressionText, variable, successCallback, failureCallback) {
 }
 
 function generateImage(expressionText, variable, successCallback) {
-  const derivativeExpressionVisualizationUrl = 'http://127.0.0.1:3000/derivative_expression_visualization';
+  const derivativeExpressionVisualizationUrl
+    = `${import.meta.env.VITE_BASE_API_URL}/derivative_expression_visualization`;
 
   axios
     .get(derivativeExpressionVisualizationUrl, { params: { expression: expressionText, variable } })
@@ -25,7 +26,7 @@ function generateImage(expressionText, variable, successCallback) {
 
 function approximateFirstOrderDifferentialEquationSolution(equationParameters, successCallback, failureCallback) {
   const approximateFirstOrderDifferentialEquationSolutionUrl
-    = 'http://127.0.0.1:3000/first_order_differential_equation_approximation';
+    = `${import.meta.env.VITE_BASE_API_URL}/first_order_differential_equation_approximation`;
 
   const requestParameters = {
     expression_text: equationParameters.expressionText,
@@ -49,7 +50,7 @@ function approximateFirstOrderDifferentialEquationSolution(equationParameters, s
 
 function illustrateDifferentialEquationApproximation(equationParameters, successCallback, failureCallback) {
   const approximateFirstOrderDifferentialEquationSolutionUrl
-    = 'http://127.0.0.1:3000/differential_equation_approximation_illustration';
+    = `${import.meta.env.VITE_BASE_API_URL}/differential_equation_approximation_illustration`;
 
   const requestParameters = {
     expression_text: equationParameters.expressionText,
