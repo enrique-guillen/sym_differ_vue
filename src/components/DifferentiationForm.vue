@@ -67,6 +67,13 @@ function setExpressionAndExpressionDerivativeImage(response) {
       variable under the definition of variable given in the aforementioned document.
     </p>
 
+    <p>
+      (For the purposes of generating the graphs of the resulting functions, the functions are sampled at a fixed step
+      size of 0.125, and an attempt is made to find discontinuities in each gap where the function was sampled; the
+      drawn curve will have less accurate lines where the function changes rapidly. A future feature will allow the step
+      size to be increased.)
+    </p>
+
     <LabeledTextArea
       inputLabelText="Your expression:"
       v-model="expressionText"
