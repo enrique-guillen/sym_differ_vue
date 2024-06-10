@@ -94,8 +94,13 @@ function updateImage(response) {
       The variables of the expression don't need to be named "y" and "t." There are fields where you specify what the
       actual variables names in your provided expression are. One of the fields is the variable whose value is the
       function we're trying to approximate, whereas the other is the parameter to that function; indicating which names
-      both fields correspond to lead to different results, so be mindful of the distinction! The variable field must be
-      a valid variable under the definition of variable given in the aforementioned grammar reference document.
+      both fields correspond to lead to different results. The variable field must be a valid variable under the
+      definition of variable given in the aforementioned grammar reference document.
+    </p>
+
+    <p>
+      (The step size is fixed to 0.100; discontinuities that exist in the solution may not appear in the approximation.
+      A future feature will allow the step size to be modified so that one can try to uncover more discontinuities.)
     </p>
 
     <LabeledTextArea
