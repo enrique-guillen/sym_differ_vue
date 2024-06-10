@@ -9,5 +9,5 @@ User interface as of this commit:
 
 ## See also
 - [sym_differ_rails](https://github.com/enrique-guillen/sym_differ_rails) which is the API that the interface is based on.
-- [sym_differ](https://github.com/enrique-guillen/sym_differ) for the application code that carries out all the relevant mathemtical operations
+- [sym_differ](https://github.com/enrique-guillen/sym_differ) for the application code that carries out all the relevant mathematical operations
 - [sym_differ_cli](https://github.com/enrique-guillen/sym_differ_cli/) for a CLI alternative to this interface.
